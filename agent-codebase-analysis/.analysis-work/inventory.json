@@ -1,0 +1,7945 @@
+{
+  "generated_at": "2026-11-19T02:14:13.976398+00:00",
+  "root": "/mnt/external-2T/workspace/OpenSpec",
+  "file_count": 1392,
+  "extensions": {
+    ".md": 771,
+    ".ts": 498,
+    ".yaml": 51,
+    ".mjs": 15,
+    ".tsx": 11,
+    ".yml": 9,
+    ".json": 7,
+    "[none]": 7,
+    ".sh": 5,
+    ".lock": 4,
+    ".js": 4,
+    ".svg": 3,
+    ".nix": 1,
+    ".ps1": 1,
+    ".jsonc": 1,
+    ".css": 1,
+    ".db-wal": 1,
+    ".db-shm": 1,
+    ".db": 1
+  },
+  "roles": {
+    "source": 654,
+    "test": 251,
+    "agent-core": 170,
+    "state-context": 124,
+    "prompts": 79,
+    "model-provider": 73,
+    "ui": 67,
+    "docs": 46,
+    "artifact-event": 41,
+    "tools": 39,
+    "instruction-memory": 36,
+    "permission-safety": 18,
+    "entrypoint": 14,
+    "eval": 11,
+    "other": 7,
+    "memory-rag": 3,
+    "manifest": 2,
+    "api": 1
+  },
+  "directories": {
+    ".actrc": {
+      "other": 1
+    },
+    ".agents": {
+      "agent-core": 8,
+      "instruction-memory": 4,
+      "model-provider": 1
+    },
+    ".changeset": {
+      "source": 7,
+      "docs": 1
+    },
+    ".code-graph": {
+      "agent-core": 7,
+      "ui": 1
+    },
+    ".coderabbit.yaml": {
+      "source": 1
+    },
+    ".devcontainer": {
+      "docs": 1,
+      "source": 1
+    },
+    ".gitattributes": {
+      "other": 1
+    },
+    ".github": {
+      "prompts": 5,
+      "agent-core": 5,
+      "other": 1,
+      "source": 1,
+      "permission-safety": 1,
+      "docs": 1
+    },
+    ".gitignore": {
+      "other": 1
+    },
+    "AGENTS.md": {
+      "instruction-memory": 1,
+      "agent-core": 1
+    },
+    "CHANGELOG.md": {
+      "source": 1
+    },
+    "CONTRIBUTING.md": {
+      "source": 1
+    },
+    "LICENSE": {
+      "other": 1
+    },
+    "MAINTAINERS.md": {
+      "source": 1
+    },
+    "README.md": {
+      "docs": 1
+    },
+    "README_OLD.md": {
+      "docs": 1
+    },
+    "SECURITY.md": {
+      "permission-safety": 1
+    },
+    "assets": {
+      "source": 2
+    },
+    "bin": {
+      "source": 1
+    },
+    "build.js": {
+      "ui": 1
+    },
+    "docs": {
+      "docs": 27,
+      "agent-core": 3,
+      "ui": 2,
+      "tools": 1
+    },
+    "docs-lab": {
+      "source": 30,
+      "ui": 9,
+      "instruction-memory": 2,
+      "docs": 1,
+      "tools": 1,
+      "agent-core": 1
+    },
+    "eslint.config.js": {
+      "source": 1
+    },
+    "flake.lock": {
+      "source": 1
+    },
+    "flake.nix": {
+      "source": 1
+    },
+    "install.md": {
+      "source": 1
+    },
+    "openspec": {
+      "source": 399,
+      "state-context": 116,
+      "agent-core": 95,
+      "model-provider": 48,
+      "tools": 27,
+      "artifact-event": 24,
+      "ui": 20,
+      "eval": 6,
+      "docs": 5,
+      "permission-safety": 4,
+      "prompts": 4,
+      "memory-rag": 3,
+      "test": 2,
+      "instruction-memory": 1
+    },
+    "openspec-parallel-merge-plan.md": {
+      "source": 1
+    },
+    "package.json": {
+      "manifest": 1
+    },
+    "pnpm-lock.yaml": {
+      "source": 1
+    },
+    "pnpm-workspace.yaml": {
+      "source": 1
+    },
+    "schemas": {
+      "prompts": 4,
+      "source": 1
+    },
+    "scripts": {
+      "source": 13,
+      "docs": 1,
+      "ui": 1
+    },
+    "skills": {
+      "instruction-memory": 12,
+      "docs": 1
+    },
+    "src": {
+      "source": 156,
+      "agent-core": 32,
+      "prompts": 26,
+      "entrypoint": 14,
+      "artifact-event": 8,
+      "ui": 6,
+      "state-context": 4,
+      "tools": 4,
+      "eval": 3,
+      "model-provider": 2,
+      "permission-safety": 1
+    },
+    "test": {
+      "test": 249,
+      "prompts": 40,
+      "model-provider": 18,
+      "agent-core": 17,
+      "instruction-memory": 16,
+      "source": 13,
+      "permission-safety": 11,
+      "ui": 10,
+      "artifact-event": 9,
+      "tools": 6,
+      "state-context": 4,
+      "eval": 2
+    },
+    "tsconfig.json": {
+      "source": 1
+    },
+    "vitest.config.ts": {
+      "source": 1
+    },
+    "vitest.setup.ts": {
+      "source": 1
+    },
+    "website": {
+      "ui": 17,
+      "source": 16,
+      "docs": 6,
+      "model-provider": 4,
+      "other": 2,
+      "manifest": 1,
+      "agent-core": 1,
+      "api": 1
+    }
+  },
+  "high_signal_files": [
+    {
+      "path": "src/cli/index.ts",
+      "size": 37156,
+      "extension": ".ts",
+      "role": [
+        "entrypoint"
+      ],
+      "term_hits": {
+        "agent": 19,
+        "tools": 79,
+        "model": 6,
+        "prompt": 23,
+        "state-context": 3,
+        "memory-rag": 3,
+        "artifact-event": 13,
+        "eval-observability": 12,
+        "instruction-memory": 20
+      }
+    },
+    {
+      "path": "src/commands/workflow/index.ts",
+      "size": 808,
+      "extension": ".ts",
+      "role": [
+        "entrypoint",
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "prompt": 5,
+        "artifact-event": 1,
+        "instruction-memory": 7
+      }
+    },
+    {
+      "path": "src/core/artifact-graph/index.ts",
+      "size": 1180,
+      "extension": ".ts",
+      "role": [
+        "entrypoint",
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 3,
+        "tools": 1,
+        "model": 1,
+        "prompt": 2,
+        "state-context": 6,
+        "artifact-event": 10,
+        "permission-safety": 1,
+        "instruction-memory": 4
+      }
+    },
+    {
+      "path": "src/core/change-metadata/index.ts",
+      "size": 29,
+      "extension": ".ts",
+      "role": [
+        "entrypoint"
+      ],
+      "term_hits": {}
+    },
+    {
+      "path": "src/core/command-generation/adapters/index.ts",
+      "size": 1670,
+      "extension": ".ts",
+      "role": [
+        "entrypoint"
+      ],
+      "term_hits": {
+        "tools": 1,
+        "model": 2,
+        "memory-rag": 1
+      }
+    },
+    {
+      "path": "src/core/command-generation/index.ts",
+      "size": 866,
+      "extension": ".ts",
+      "role": [
+        "entrypoint"
+      ],
+      "term_hits": {
+        "tools": 2,
+        "model": 6,
+        "memory-rag": 2
+      }
+    },
+    {
+      "path": "src/core/index.ts",
+      "size": 456,
+      "extension": ".ts",
+      "role": [
+        "entrypoint"
+      ],
+      "term_hits": {
+        "memory-rag": 1
+      }
+    },
+    {
+      "path": "src/core/schemas/index.ts",
+      "size": 319,
+      "extension": ".ts",
+      "role": [
+        "entrypoint"
+      ],
+      "term_hits": {}
+    },
+    {
+      "path": "src/core/shared/index.ts",
+      "size": 891,
+      "extension": ".ts",
+      "role": [
+        "entrypoint"
+      ],
+      "term_hits": {
+        "tools": 21,
+        "model": 2,
+        "prompt": 4,
+        "state-context": 1
+      }
+    },
+    {
+      "path": "src/core/store/index.ts",
+      "size": 126,
+      "extension": ".ts",
+      "role": [
+        "entrypoint"
+      ],
+      "term_hits": {}
+    },
+    {
+      "path": "src/core/templates/index.ts",
+      "size": 330,
+      "extension": ".ts",
+      "role": [
+        "entrypoint",
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "model": 1,
+        "prompt": 6
+      }
+    },
+    {
+      "path": "src/index.ts",
+      "size": 64,
+      "extension": ".ts",
+      "role": [
+        "entrypoint"
+      ],
+      "term_hits": {
+        "memory-rag": 2
+      }
+    },
+    {
+      "path": "src/telemetry/index.ts",
+      "size": 7876,
+      "extension": ".ts",
+      "role": [
+        "entrypoint",
+        "eval"
+      ],
+      "term_hits": {
+        "model": 3,
+        "artifact-event": 16,
+        "eval-observability": 34
+      }
+    },
+    {
+      "path": "src/utils/index.ts",
+      "size": 783,
+      "extension": ".ts",
+      "role": [
+        "entrypoint"
+      ],
+      "term_hits": {
+        "tools": 1
+      }
+    },
+    {
+      "path": ".agents/skills/draft-openspec-docs/SKILL.md",
+      "size": 3284,
+      "extension": ".md",
+      "role": [
+        "instruction-memory",
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "prompt": 1,
+        "artifact-event": 1,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": ".agents/skills/release-openspec/SKILL.md",
+      "size": 13125,
+      "extension": ".md",
+      "role": [
+        "instruction-memory",
+        "agent-core"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 7,
+        "tools": 15,
+        "model": 2,
+        "state-context": 14,
+        "memory-rag": 3,
+        "artifact-event": 11,
+        "permission-safety": 9
+      }
+    },
+    {
+      "path": ".agents/skills/release-openspec/agents/openai.yaml",
+      "size": 230,
+      "extension": ".yaml",
+      "role": [
+        "agent-core",
+        "model-provider"
+      ],
+      "term_hits": {
+        "prompt": 1,
+        "state-context": 1
+      }
+    },
+    {
+      "path": ".agents/skills/release-openspec/references/release-notes.md",
+      "size": 3222,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "tools": 1,
+        "model": 2
+      }
+    },
+    {
+      "path": ".agents/skills/verify-openspec-docs/SKILL.md",
+      "size": 4246,
+      "extension": ".md",
+      "role": [
+        "instruction-memory",
+        "agent-core"
+      ],
+      "term_hits": {
+        "harness": 2,
+        "agent": 6,
+        "tools": 1,
+        "prompt": 1,
+        "state-context": 9
+      }
+    },
+    {
+      "path": ".agents/skills/write-openspec-docs/SKILL.md",
+      "size": 3843,
+      "extension": ".md",
+      "role": [
+        "instruction-memory",
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "tools": 1,
+        "prompt": 1,
+        "state-context": 2,
+        "memory-rag": 4,
+        "artifact-event": 2,
+        "eval-observability": 1
+      }
+    },
+    {
+      "path": ".agents/skills/write-openspec-docs/full-process.md",
+      "size": 3196,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 1,
+        "state-context": 9,
+        "memory-rag": 1,
+        "artifact-event": 4
+      }
+    },
+    {
+      "path": ".agents/skills/write-openspec-docs/writing.md",
+      "size": 17618,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 21,
+        "tools": 12,
+        "model": 4,
+        "prompt": 2,
+        "state-context": 7,
+        "memory-rag": 20,
+        "artifact-event": 1,
+        "eval-observability": 1,
+        "instruction-memory": 3
+      }
+    },
+    {
+      "path": ".code-graph/index-build.lock",
+      "size": 0,
+      "extension": ".lock",
+      "role": [
+        "agent-core",
+        "ui"
+      ],
+      "term_hits": {}
+    },
+    {
+      "path": ".code-graph/index-run.lock",
+      "size": 0,
+      "extension": ".lock",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {}
+    },
+    {
+      "path": ".code-graph/index.db",
+      "size": 36065280,
+      "extension": ".db",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {}
+    },
+    {
+      "path": ".code-graph/index.db-shm",
+      "size": 32768,
+      "extension": ".db-shm",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {}
+    },
+    {
+      "path": ".code-graph/index.db-wal",
+      "size": 4647392,
+      "extension": ".db-wal",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {}
+    },
+    {
+      "path": ".code-graph/index.lock",
+      "size": 6,
+      "extension": ".lock",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {}
+    },
+    {
+      "path": ".code-graph/source-roots.json",
+      "size": 63,
+      "extension": ".json",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {}
+    },
+    {
+      "path": ".github/workflows/README.md",
+      "size": 365,
+      "extension": ".md",
+      "role": [
+        "docs",
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "tools": 2
+      }
+    },
+    {
+      "path": ".github/workflows/binaries.yml",
+      "size": 21021,
+      "extension": ".yml",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "harness": 29,
+        "agent": 4,
+        "tools": 31,
+        "artifact-event": 14,
+        "permission-safety": 5,
+        "instruction-memory": 7
+      }
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "size": 19553,
+      "extension": ".yml",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 9,
+        "tools": 35,
+        "model": 1,
+        "prompt": 2,
+        "memory-rag": 4,
+        "artifact-event": 15,
+        "permission-safety": 9,
+        "eval-observability": 1,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": ".github/workflows/release-prepare.yml",
+      "size": 7560,
+      "extension": ".yml",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "harness": 3,
+        "agent": 6,
+        "tools": 13,
+        "model": 3,
+        "artifact-event": 2,
+        "permission-safety": 3
+      }
+    },
+    {
+      "path": ".github/workflows/security.yml",
+      "size": 4818,
+      "extension": ".yml",
+      "role": [
+        "agent-core",
+        "permission-safety"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 3,
+        "tools": 17,
+        "artifact-event": 3,
+        "permission-safety": 4
+      }
+    },
+    {
+      "path": "AGENTS.md",
+      "size": 0,
+      "extension": ".md",
+      "role": [
+        "instruction-memory",
+        "agent-core"
+      ],
+      "term_hits": {}
+    },
+    {
+      "path": "docs-lab/reference/architecture/workflow-runs.md",
+      "size": 450,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "artifact-event": 1
+      }
+    },
+    {
+      "path": "docs/agent-contract.md",
+      "size": 18997,
+      "extension": ".md",
+      "role": [
+        "docs",
+        "agent-core"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 6,
+        "tools": 2,
+        "model": 1,
+        "prompt": 8,
+        "state-context": 25,
+        "memory-rag": 6,
+        "artifact-event": 23,
+        "instruction-memory": 11
+      }
+    },
+    {
+      "path": "docs/team-workflow.md",
+      "size": 5561,
+      "extension": ".md",
+      "role": [
+        "docs",
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "state-context": 2,
+        "artifact-event": 1
+      }
+    },
+    {
+      "path": "docs/workflows.md",
+      "size": 17831,
+      "extension": ".md",
+      "role": [
+        "docs",
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 11,
+        "tools": 6,
+        "prompt": 4,
+        "state-context": 11,
+        "memory-rag": 3,
+        "artifact-event": 23,
+        "instruction-memory": 7
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-09-29-add-agents-md-config/proposal.md",
+      "size": 2447,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 18,
+        "tools": 2,
+        "model": 4,
+        "prompt": 5,
+        "instruction-memory": 3
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-09-29-add-agents-md-config/specs/cli-init/spec.md",
+      "size": 2882,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 10,
+        "tools": 7,
+        "model": 10,
+        "prompt": 3,
+        "instruction-memory": 5
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-09-29-add-agents-md-config/specs/cli-update/spec.md",
+      "size": 2058,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 7,
+        "tools": 8,
+        "model": 1,
+        "prompt": 5,
+        "instruction-memory": 2
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-09-29-add-agents-md-config/tasks.md",
+      "size": 1131,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 9,
+        "tools": 1,
+        "model": 1,
+        "prompt": 5
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-09-29-add-multi-agent-init/proposal.md",
+      "size": 2689,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "tools": 25,
+        "model": 2,
+        "prompt": 2,
+        "state-context": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-09-29-add-multi-agent-init/specs/cli-init/spec.md",
+      "size": 2839,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "tools": 32,
+        "model": 1,
+        "prompt": 1,
+        "artifact-event": 2,
+        "permission-safety": 1,
+        "instruction-memory": 3
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-09-29-add-multi-agent-init/tasks.md",
+      "size": 914,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "tools": 14,
+        "model": 1,
+        "permission-safety": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-09-29-update-agent-file-name/proposal.md",
+      "size": 1110,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 11,
+        "tools": 4,
+        "model": 1,
+        "prompt": 2,
+        "eval-observability": 1,
+        "instruction-memory": 5
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-09-29-update-agent-file-name/specs/cli-init/spec.md",
+      "size": 1483,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 5,
+        "tools": 4,
+        "model": 5,
+        "prompt": 4,
+        "state-context": 1,
+        "instruction-memory": 2
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-09-29-update-agent-file-name/specs/cli-update/spec.md",
+      "size": 852,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 3,
+        "prompt": 4,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-09-29-update-agent-file-name/specs/openspec-conventions/spec.md",
+      "size": 1267,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "state-context": 2,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-09-29-update-agent-file-name/tasks.md",
+      "size": 804,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 10,
+        "model": 2,
+        "prompt": 6,
+        "instruction-memory": 2
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-09-29-update-agent-instructions/design.md",
+      "size": 5249,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 17,
+        "tools": 5,
+        "model": 4,
+        "prompt": 2,
+        "state-context": 7,
+        "memory-rag": 3,
+        "artifact-event": 7,
+        "eval-observability": 1,
+        "instruction-memory": 2
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-09-29-update-agent-instructions/proposal.md",
+      "size": 5884,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 12,
+        "tools": 4,
+        "model": 5,
+        "prompt": 4,
+        "state-context": 4,
+        "eval-observability": 1,
+        "instruction-memory": 7
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-09-29-update-agent-instructions/tasks.md",
+      "size": 3597,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 8,
+        "tools": 1,
+        "model": 3,
+        "prompt": 3,
+        "state-context": 2,
+        "artifact-event": 2,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-10-14-add-kilocode-workflows/proposal.md",
+      "size": 1970,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 16,
+        "tools": 9,
+        "model": 1,
+        "prompt": 3,
+        "memory-rag": 1,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-10-14-add-kilocode-workflows/specs/cli-init/spec.md",
+      "size": 3027,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 14,
+        "tools": 19,
+        "model": 8,
+        "prompt": 11,
+        "instruction-memory": 5
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-10-14-add-kilocode-workflows/specs/cli-update/spec.md",
+      "size": 1512,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 5,
+        "tools": 3,
+        "model": 2,
+        "prompt": 8,
+        "instruction-memory": 4
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-10-14-add-kilocode-workflows/tasks.md",
+      "size": 1006,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 5,
+        "tools": 4,
+        "memory-rag": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-10-14-add-windsurf-workflows/proposal.md",
+      "size": 2104,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 13,
+        "tools": 2,
+        "model": 2,
+        "prompt": 4,
+        "memory-rag": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-10-14-add-windsurf-workflows/specs/cli-init/spec.md",
+      "size": 2942,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 12,
+        "tools": 19,
+        "model": 8,
+        "prompt": 11,
+        "instruction-memory": 5
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-10-14-add-windsurf-workflows/specs/cli-update/spec.md",
+      "size": 1511,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 5,
+        "tools": 3,
+        "model": 2,
+        "prompt": 8,
+        "instruction-memory": 4
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-10-14-add-windsurf-workflows/tasks.md",
+      "size": 1250,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 8,
+        "tools": 2,
+        "model": 1,
+        "prompt": 1,
+        "memory-rag": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-10-14-improve-agent-instruction-usability/proposal.md",
+      "size": 940,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 7,
+        "prompt": 3,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-10-14-improve-agent-instruction-usability/specs/docs-agent-instructions/spec.md",
+      "size": 2304,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 9,
+        "tools": 1,
+        "model": 1,
+        "prompt": 8,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-10-14-improve-agent-instruction-usability/tasks.md",
+      "size": 723,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "prompt": 3,
+        "instruction-memory": 2
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-10-14-slim-root-agents-file/proposal.md",
+      "size": 1098,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 7,
+        "tools": 1,
+        "model": 1,
+        "prompt": 4,
+        "instruction-memory": 2
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-10-14-slim-root-agents-file/tasks.md",
+      "size": 815,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "model": 1,
+        "prompt": 2,
+        "artifact-event": 1,
+        "instruction-memory": 3
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-10-14-update-cli-init-root-agents/proposal.md",
+      "size": 1842,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 9,
+        "tools": 6,
+        "model": 2,
+        "prompt": 3,
+        "state-context": 1,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-10-14-update-cli-init-root-agents/specs/cli-init/spec.md",
+      "size": 2305,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 8,
+        "tools": 13,
+        "model": 2,
+        "prompt": 4,
+        "instruction-memory": 3
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-10-14-update-cli-init-root-agents/specs/cli-update/spec.md",
+      "size": 697,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "tools": 4,
+        "model": 1,
+        "prompt": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-10-14-update-cli-init-root-agents/tasks.md",
+      "size": 930,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 3,
+        "tools": 3,
+        "model": 1,
+        "prompt": 3
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-12-24-add-artifact-graph-core/design.md",
+      "size": 7433,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "harness": 3,
+        "agent": 9,
+        "tools": 1,
+        "model": 3,
+        "prompt": 7,
+        "state-context": 20,
+        "memory-rag": 1,
+        "artifact-event": 26,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-12-24-add-artifact-graph-core/proposal.md",
+      "size": 951,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 4,
+        "model": 1,
+        "state-context": 2,
+        "artifact-event": 10
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-12-24-add-artifact-graph-core/specs/artifact-graph/spec.md",
+      "size": 4107,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 5,
+        "model": 4,
+        "state-context": 3,
+        "artifact-event": 49
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-12-24-add-artifact-graph-core/tasks.md",
+      "size": 3882,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 18,
+        "state-context": 4,
+        "memory-rag": 1,
+        "artifact-event": 36
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-12-28-add-artifact-workflow-cli/design.md",
+      "size": 3473,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 14,
+        "model": 1,
+        "prompt": 1,
+        "state-context": 4,
+        "memory-rag": 1,
+        "artifact-event": 13,
+        "instruction-memory": 3
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-12-28-add-artifact-workflow-cli/proposal.md",
+      "size": 1689,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 9,
+        "model": 1,
+        "prompt": 3,
+        "state-context": 2,
+        "memory-rag": 1,
+        "artifact-event": 14,
+        "instruction-memory": 5
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-12-28-add-artifact-workflow-cli/specs/cli-artifact-workflow/spec.md",
+      "size": 6358,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 11,
+        "prompt": 15,
+        "state-context": 2,
+        "artifact-event": 38,
+        "instruction-memory": 11
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-12-28-add-artifact-workflow-cli/tasks.md",
+      "size": 1755,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "prompt": 2,
+        "memory-rag": 4,
+        "artifact-event": 3,
+        "instruction-memory": 2
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-12-28-restructure-schema-directories/specs/artifact-graph/spec.md",
+      "size": 2089,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "prompt": 5,
+        "artifact-event": 10
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-12-29-unify-change-state-model/specs/cli-artifact-workflow/spec.md",
+      "size": 4051,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "state-context",
+        "artifact-event",
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "prompt": 2,
+        "state-context": 1,
+        "artifact-event": 35,
+        "instruction-memory": 12
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-12-30-fix-cline-workflows-implementation/proposal.md",
+      "size": 1015,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 9
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-12-30-fix-cline-workflows-implementation/specs/cli-init/spec.md",
+      "size": 8509,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 33,
+        "tools": 24,
+        "model": 10,
+        "prompt": 42,
+        "instruction-memory": 12
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-12-30-fix-cline-workflows-implementation/specs/cli-update/spec.md",
+      "size": 6187,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 17,
+        "tools": 5,
+        "model": 2,
+        "prompt": 32,
+        "instruction-memory": 10
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-12-30-fix-cline-workflows-implementation/tasks.md",
+      "size": 682,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 5,
+        "prompt": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-01-06-add-agent-schema-selection/proposal.md",
+      "size": 1174,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 10,
+        "prompt": 3,
+        "artifact-event": 5
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-01-06-add-agent-schema-selection/tasks.md",
+      "size": 1292,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "tools": 1,
+        "prompt": 2,
+        "state-context": 1,
+        "artifact-event": 7,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-01-06-add-per-change-schema-metadata/specs/cli-artifact-workflow/spec.md",
+      "size": 3590,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 3,
+        "artifact-event": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-01-06-make-apply-instructions-schema-aware/specs/cli-artifact-workflow/spec.md",
+      "size": 2325,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "model": 2,
+        "state-context": 2,
+        "artifact-event": 13,
+        "instruction-memory": 13
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-02-17-multi-provider-skill-generation/specs/cli-artifact-workflow/spec.md",
+      "size": 2144,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "artifact-event",
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "tools": 26,
+        "model": 7,
+        "artifact-event": 6
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-05-06-workspace-create-and-register-repos/specs/cli-artifact-workflow/spec.md",
+      "size": 1214,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 6,
+        "artifact-event": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-05-06-workspace-open-agent-context/design.md",
+      "size": 12495,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "state-context"
+      ],
+      "term_hits": {
+        "harness": 2,
+        "agent": 32,
+        "tools": 7,
+        "model": 6,
+        "prompt": 11,
+        "state-context": 16
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-05-06-workspace-open-agent-context/proposal.md",
+      "size": 3340,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 11,
+        "tools": 1,
+        "model": 2,
+        "prompt": 4,
+        "state-context": 11,
+        "memory-rag": 2,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-05-06-workspace-open-agent-context/specs/workspace-foundation/spec.md",
+      "size": 4220,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 11,
+        "model": 1,
+        "prompt": 1,
+        "state-context": 3
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-05-06-workspace-open-agent-context/specs/workspace-open/spec.md",
+      "size": 10506,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 11,
+        "tools": 1,
+        "model": 5,
+        "prompt": 8,
+        "state-context": 12,
+        "artifact-event": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-05-06-workspace-open-agent-context/tasks.md",
+      "size": 5858,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 13,
+        "tools": 2,
+        "model": 5,
+        "prompt": 5,
+        "state-context": 3
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-05-14-workspace-change-planning/specs/artifact-graph/spec.md",
+      "size": 2375,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 4,
+        "prompt": 3,
+        "state-context": 1,
+        "artifact-event": 10,
+        "instruction-memory": 3
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-05-14-workspace-change-planning/specs/cli-artifact-workflow/spec.md",
+      "size": 5858,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 21,
+        "tools": 8,
+        "model": 5,
+        "state-context": 12,
+        "artifact-event": 25,
+        "instruction-memory": 16
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-19-add-init-agents-target/.openspec.yaml",
+      "size": 40,
+      "extension": ".yaml",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {}
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-19-add-init-agents-target/proposal.md",
+      "size": 2055,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 19,
+        "tools": 21,
+        "model": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-19-add-init-agents-target/specs/ai-tool-paths/spec.md",
+      "size": 849,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "tools"
+      ],
+      "term_hits": {
+        "agent": 11,
+        "tools": 5
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-19-add-init-agents-target/specs/cli-init/spec.md",
+      "size": 907,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 9,
+        "tools": 6,
+        "model": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-19-add-init-agents-target/tasks.md",
+      "size": 1057,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 7,
+        "tools": 8
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-19-add-status-next-step/specs/cli-artifact-workflow/spec.md",
+      "size": 2320,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "artifact-event": 13,
+        "instruction-memory": 2
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-19-add-update-workflow/.openspec.yaml",
+      "size": 40,
+      "extension": ".yaml",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {}
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-19-add-update-workflow/design.md",
+      "size": 13967,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 25,
+        "tools": 4,
+        "model": 3,
+        "prompt": 5,
+        "state-context": 5,
+        "memory-rag": 2,
+        "artifact-event": 66,
+        "eval-observability": 2,
+        "instruction-memory": 4
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-19-add-update-workflow/proposal.md",
+      "size": 8187,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 13,
+        "tools": 3,
+        "model": 1,
+        "prompt": 3,
+        "state-context": 1,
+        "artifact-event": 38,
+        "eval-observability": 1,
+        "instruction-memory": 4
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-19-add-update-workflow/specs/opsx-update-skill/spec.md",
+      "size": 8881,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "harness": 4,
+        "agent": 2,
+        "prompt": 1,
+        "state-context": 2,
+        "artifact-event": 65,
+        "instruction-memory": 4
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-19-add-update-workflow/tasks.md",
+      "size": 3498,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 8,
+        "model": 1,
+        "prompt": 10,
+        "state-context": 1,
+        "artifact-event": 15,
+        "instruction-memory": 5
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-19-extend-config-injection-to-apply-archive/specs/cli-artifact-workflow/spec.md",
+      "size": 1648,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "state-context": 12,
+        "artifact-event": 3,
+        "instruction-memory": 8
+      }
+    },
+    {
+      "path": "openspec/changes/share-skills-in-agents-folder/.openspec.yaml",
+      "size": 40,
+      "extension": ".yaml",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {}
+    },
+    {
+      "path": "openspec/changes/share-skills-in-agents-folder/design.md",
+      "size": 6988,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 18,
+        "tools": 43,
+        "model": 3,
+        "prompt": 2,
+        "memory-rag": 1,
+        "instruction-memory": 5
+      }
+    },
+    {
+      "path": "openspec/changes/share-skills-in-agents-folder/proposal.md",
+      "size": 3094,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 9,
+        "tools": 29,
+        "model": 3,
+        "instruction-memory": 4
+      }
+    },
+    {
+      "path": "openspec/changes/share-skills-in-agents-folder/specs/ai-tool-paths/spec.md",
+      "size": 3099,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "tools"
+      ],
+      "term_hits": {
+        "agent": 21,
+        "tools": 31,
+        "model": 8
+      }
+    },
+    {
+      "path": "openspec/changes/share-skills-in-agents-folder/specs/cli-artifact-workflow/spec.md",
+      "size": 2390,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "tools": 29,
+        "model": 8,
+        "artifact-event": 4
+      }
+    },
+    {
+      "path": "openspec/changes/share-skills-in-agents-folder/specs/cli-config/spec.md",
+      "size": 729,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "instruction-memory": 2
+      }
+    },
+    {
+      "path": "openspec/changes/share-skills-in-agents-folder/specs/cli-init/spec.md",
+      "size": 2070,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 6,
+        "tools": 21,
+        "model": 5,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/changes/share-skills-in-agents-folder/specs/cli-update/spec.md",
+      "size": 4927,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 5,
+        "tools": 16,
+        "model": 12,
+        "prompt": 9,
+        "instruction-memory": 2
+      }
+    },
+    {
+      "path": "openspec/changes/share-skills-in-agents-folder/tasks.md",
+      "size": 2564,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 5,
+        "tools": 14,
+        "model": 2,
+        "prompt": 2,
+        "instruction-memory": 3
+      }
+    },
+    {
+      "path": "openspec/changes/simplify-skill-installation/specs/propose-workflow/spec.md",
+      "size": 2368,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "harness": 4,
+        "agent": 8,
+        "model": 2,
+        "prompt": 1,
+        "state-context": 2,
+        "artifact-event": 8
+      }
+    },
+    {
+      "path": "openspec/explorations/explore-workflow-ux.md",
+      "size": 5055,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 6,
+        "prompt": 4,
+        "state-context": 7,
+        "artifact-event": 8
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/07-add-agent-first-initiative-discovery/evidence.md",
+      "size": 5235,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 4,
+        "tools": 2,
+        "model": 1,
+        "state-context": 16
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/07-add-agent-first-initiative-discovery/plan.md",
+      "size": 6310,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 7,
+        "tools": 2,
+        "model": 1,
+        "prompt": 1,
+        "state-context": 19
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/07-add-agent-first-initiative-discovery/tasks.md",
+      "size": 1528,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "state-context": 3
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/13-agent-handoff-output-and-delivery-polish/evidence.md",
+      "size": 1679,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "state-context"
+      ],
+      "term_hits": {
+        "harness": 2,
+        "agent": 11,
+        "tools": 2,
+        "model": 1,
+        "state-context": 3
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/13-agent-handoff-output-and-delivery-polish/plan.md",
+      "size": 3416,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "state-context"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 13,
+        "tools": 5,
+        "model": 4,
+        "state-context": 10,
+        "memory-rag": 1,
+        "artifact-event": 3
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/13-agent-handoff-output-and-delivery-polish/tasks.md",
+      "size": 2057,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "state-context"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 7,
+        "tools": 2,
+        "model": 4,
+        "state-context": 3,
+        "artifact-event": 1
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/proposed-initiative-next-agent-handoff-ux/evidence.md",
+      "size": 1775,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 6,
+        "tools": 2,
+        "model": 1,
+        "state-context": 5,
+        "memory-rag": 1,
+        "artifact-event": 3
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/proposed-initiative-next-agent-handoff-ux/plan.md",
+      "size": 3185,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 10,
+        "tools": 5,
+        "model": 1,
+        "state-context": 4,
+        "artifact-event": 3,
+        "instruction-memory": 2
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/proposed-initiative-next-agent-handoff-ux/tasks.md",
+      "size": 998,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "tools": 1,
+        "state-context": 2,
+        "artifact-event": 1,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/specs/artifact-graph/spec.md",
+      "size": 9568,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 8,
+        "model": 17,
+        "prompt": 5,
+        "state-context": 4,
+        "artifact-event": 77
+      }
+    },
+    {
+      "path": "openspec/specs/cli-artifact-workflow/spec.md",
+      "size": 17677,
+      "extension": ".md",
+      "role": [
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 18,
+        "tools": 35,
+        "model": 11,
+        "prompt": 17,
+        "state-context": 24,
+        "artifact-event": 89,
+        "instruction-memory": 44
+      }
+    },
+    {
+      "path": "openspec/specs/docs-agent-instructions/spec.md",
+      "size": 3996,
+      "extension": ".md",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 19,
+        "tools": 1,
+        "model": 2,
+        "prompt": 9,
+        "artifact-event": 1,
+        "instruction-memory": 7
+      }
+    },
+    {
+      "path": "openspec/work/AGENTS.md",
+      "size": 1343,
+      "extension": ".md",
+      "role": [
+        "instruction-memory",
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 8,
+        "tools": 4,
+        "model": 1,
+        "prompt": 2,
+        "state-context": 1
+      }
+    },
+    {
+      "path": "src/commands/workflow/default-schema.ts",
+      "size": 169,
+      "extension": ".ts",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 1
+      }
+    },
+    {
+      "path": "src/commands/workflow/instructions.ts",
+      "size": 32546,
+      "extension": ".ts",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 12,
+        "model": 20,
+        "prompt": 7,
+        "state-context": 72,
+        "memory-rag": 14,
+        "artifact-event": 141,
+        "permission-safety": 1,
+        "instruction-memory": 109
+      }
+    },
+    {
+      "path": "src/commands/workflow/new-change.ts",
+      "size": 6384,
+      "extension": ".ts",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 1
+      }
+    },
+    {
+      "path": "src/commands/workflow/schemas.ts",
+      "size": 1602,
+      "extension": ".ts",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "memory-rag": 1,
+        "artifact-event": 3
+      }
+    },
+    {
+      "path": "src/commands/workflow/shared.ts",
+      "size": 8702,
+      "extension": ".ts",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 3,
+        "state-context": 5,
+        "memory-rag": 4,
+        "artifact-event": 9,
+        "instruction-memory": 4
+      }
+    },
+    {
+      "path": "src/commands/workflow/status.ts",
+      "size": 10642,
+      "extension": ".ts",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "prompt": 1,
+        "state-context": 6,
+        "memory-rag": 3,
+        "artifact-event": 24,
+        "permission-safety": 1
+      }
+    },
+    {
+      "path": "src/commands/workflow/templates.ts",
+      "size": 3658,
+      "extension": ".ts",
+      "role": [
+        "agent-core",
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 6,
+        "prompt": 26,
+        "memory-rag": 1,
+        "artifact-event": 16
+      }
+    },
+    {
+      "path": "src/core/artifact-graph/graph.ts",
+      "size": 5891,
+      "extension": ".ts",
+      "role": [
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 14,
+        "memory-rag": 2,
+        "artifact-event": 65
+      }
+    },
+    {
+      "path": "src/core/artifact-graph/instruction-loader.ts",
+      "size": 19570,
+      "extension": ".ts",
+      "role": [
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 33,
+        "tools": 7,
+        "model": 18,
+        "prompt": 42,
+        "state-context": 79,
+        "memory-rag": 6,
+        "artifact-event": 164,
+        "permission-safety": 1,
+        "instruction-memory": 17
+      }
+    },
+    {
+      "path": "src/core/artifact-graph/outputs.ts",
+      "size": 14696,
+      "extension": ".ts",
+      "role": [
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "model": 15,
+        "memory-rag": 40,
+        "artifact-event": 21,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "src/core/artifact-graph/resolver.ts",
+      "size": 13069,
+      "extension": ".ts",
+      "role": [
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 3,
+        "artifact-event": 10
+      }
+    },
+    {
+      "path": "src/core/artifact-graph/schema.ts",
+      "size": 6160,
+      "extension": ".ts",
+      "role": [
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "model": 11,
+        "artifact-event": 52
+      }
+    },
+    {
+      "path": "src/core/artifact-graph/state.ts",
+      "size": 1187,
+      "extension": ".ts",
+      "role": [
+        "agent-core",
+        "state-context",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 7,
+        "model": 5,
+        "artifact-event": 15
+      }
+    },
+    {
+      "path": "src/core/artifact-graph/types.ts",
+      "size": 2945,
+      "extension": ".ts",
+      "role": [
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "model": 2,
+        "prompt": 2,
+        "state-context": 1,
+        "artifact-event": 17,
+        "instruction-memory": 4
+      }
+    },
+    {
+      "path": "src/core/github-copilot/cloud-agent.ts",
+      "size": 24712,
+      "extension": ".ts",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 98,
+        "tools": 20,
+        "model": 28,
+        "prompt": 5,
+        "state-context": 4,
+        "artifact-event": 35,
+        "permission-safety": 1,
+        "eval-observability": 2,
+        "instruction-memory": 16
+      }
+    },
+    {
+      "path": "src/core/templates/workflows/apply-change.ts",
+      "size": 9957,
+      "extension": ".ts",
+      "role": [
+        "agent-core",
+        "prompts"
+      ],
+      "term_hits": {
+        "harness": 3,
+        "agent": 9,
+        "tools": 5,
+        "model": 2,
+        "prompt": 12,
+        "state-context": 27,
+        "artifact-event": 18,
+        "instruction-memory": 20
+      }
+    },
+    {
+      "path": "src/core/templates/workflows/archive-change.ts",
+      "size": 32207,
+      "extension": ".ts",
+      "role": [
+        "agent-core",
+        "prompts"
+      ],
+      "term_hits": {
+        "harness": 4,
+        "agent": 34,
+        "tools": 2,
+        "model": 3,
+        "prompt": 34,
+        "state-context": 21,
+        "artifact-event": 42,
+        "instruction-memory": 12
+      }
+    },
+    {
+      "path": "src/core/templates/workflows/bulk-archive-change.ts",
+      "size": 40743,
+      "extension": ".ts",
+      "role": [
+        "agent-core",
+        "prompts"
+      ],
+      "term_hits": {
+        "harness": 6,
+        "agent": 32,
+        "tools": 2,
+        "model": 1,
+        "prompt": 22,
+        "state-context": 17,
+        "artifact-event": 38,
+        "eval-observability": 2,
+        "instruction-memory": 16
+      }
+    },
+    {
+      "path": "src/core/templates/workflows/continue-change.ts",
+      "size": 15224,
+      "extension": ".ts",
+      "role": [
+        "agent-core",
+        "prompts"
+      ],
+      "term_hits": {
+        "harness": 5,
+        "agent": 9,
+        "tools": 2,
+        "model": 1,
+        "prompt": 18,
+        "state-context": 28,
+        "memory-rag": 2,
+        "artifact-event": 86,
+        "instruction-memory": 24
+      }
+    },
+    {
+      "path": "src/core/templates/workflows/explore.ts",
+      "size": 36900,
+      "extension": ".ts",
+      "role": [
+        "agent-core",
+        "prompts"
+      ],
+      "term_hits": {
+        "harness": 4,
+        "agent": 14,
+        "tools": 17,
+        "model": 2,
+        "prompt": 12,
+        "state-context": 42,
+        "memory-rag": 4,
+        "artifact-event": 84,
+        "permission-safety": 1,
+        "eval-observability": 5,
+        "instruction-memory": 21
+      }
+    },
+    {
+      "path": "src/core/templates/workflows/feedback.ts",
+      "size": 3605,
+      "extension": ".ts",
+      "role": [
+        "agent-core",
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 5,
+        "model": 1,
+        "prompt": 5,
+        "state-context": 7,
+        "artifact-event": 6,
+        "permission-safety": 4,
+        "instruction-memory": 2
+      }
+    },
+    {
+      "path": "src/core/templates/workflows/ff-change.ts",
+      "size": 18268,
+      "extension": ".ts",
+      "role": [
+        "agent-core",
+        "prompts"
+      ],
+      "term_hits": {
+        "harness": 4,
+        "agent": 4,
+        "tools": 2,
+        "model": 4,
+        "prompt": 16,
+        "state-context": 30,
+        "memory-rag": 2,
+        "artifact-event": 108,
+        "instruction-memory": 28
+      }
+    },
+    {
+      "path": "src/core/templates/workflows/new-change.ts",
+      "size": 6484,
+      "extension": ".ts",
+      "role": [
+        "agent-core",
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 20,
+        "model": 1,
+        "prompt": 18,
+        "state-context": 3,
+        "artifact-event": 34,
+        "instruction-memory": 7
+      }
+    },
+    {
+      "path": "src/core/templates/workflows/onboard.ts",
+      "size": 15485,
+      "extension": ".ts",
+      "role": [
+        "agent-core",
+        "prompts"
+      ],
+      "term_hits": {
+        "harness": 2,
+        "agent": 16,
+        "tools": 2,
+        "model": 2,
+        "prompt": 9,
+        "state-context": 11,
+        "artifact-event": 10,
+        "permission-safety": 4,
+        "instruction-memory": 12
+      }
+    },
+    {
+      "path": "src/core/templates/workflows/project-root.ts",
+      "size": 3394,
+      "extension": ".ts",
+      "role": [
+        "agent-core",
+        "prompts"
+      ],
+      "term_hits": {
+        "harness": 2,
+        "agent": 9,
+        "model": 2,
+        "prompt": 1,
+        "artifact-event": 1
+      }
+    },
+    {
+      "path": "src/core/templates/workflows/propose.ts",
+      "size": 28438,
+      "extension": ".ts",
+      "role": [
+        "agent-core",
+        "prompts"
+      ],
+      "term_hits": {
+        "harness": 6,
+        "agent": 32,
+        "tools": 4,
+        "model": 5,
+        "prompt": 16,
+        "state-context": 62,
+        "memory-rag": 2,
+        "artifact-event": 124,
+        "instruction-memory": 30
+      }
+    },
+    {
+      "path": "src/core/templates/workflows/store-selection.ts",
+      "size": 1167,
+      "extension": ".ts",
+      "role": [
+        "agent-core",
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 3,
+        "model": 1,
+        "prompt": 1,
+        "state-context": 1,
+        "instruction-memory": 2
+      }
+    },
+    {
+      "path": "src/core/templates/workflows/sync-specs.ts",
+      "size": 26369,
+      "extension": ".ts",
+      "role": [
+        "agent-core",
+        "prompts"
+      ],
+      "term_hits": {
+        "harness": 2,
+        "agent": 10,
+        "model": 1,
+        "prompt": 12,
+        "state-context": 8,
+        "artifact-event": 18,
+        "instruction-memory": 13
+      }
+    },
+    {
+      "path": "src/core/templates/workflows/update-change.ts",
+      "size": 17107,
+      "extension": ".ts",
+      "role": [
+        "agent-core",
+        "prompts"
+      ],
+      "term_hits": {
+        "harness": 2,
+        "agent": 12,
+        "tools": 2,
+        "model": 2,
+        "prompt": 16,
+        "state-context": 12,
+        "artifact-event": 97,
+        "instruction-memory": 14
+      }
+    },
+    {
+      "path": "src/core/templates/workflows/verify-change.ts",
+      "size": 35841,
+      "extension": ".ts",
+      "role": [
+        "agent-core",
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 6,
+        "tools": 8,
+        "model": 3,
+        "prompt": 12,
+        "state-context": 34,
+        "memory-rag": 28,
+        "artifact-event": 52,
+        "eval-observability": 2,
+        "instruction-memory": 7
+      }
+    },
+    {
+      "path": "test/AGENTS.md",
+      "size": 1602,
+      "extension": ".md",
+      "role": [
+        "instruction-memory",
+        "agent-core"
+      ],
+      "term_hits": {
+        "memory-rag": 1
+      }
+    },
+    {
+      "path": "test/commands/artifact-workflow.test.ts",
+      "size": 71455,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 12,
+        "tools": 12,
+        "model": 21,
+        "prompt": 54,
+        "state-context": 89,
+        "artifact-event": 103,
+        "instruction-memory": 99
+      }
+    },
+    {
+      "path": "test/commands/workflow-instructions-injection.test.ts",
+      "size": 10333,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 4,
+        "model": 8,
+        "prompt": 12,
+        "state-context": 20,
+        "memory-rag": 5,
+        "artifact-event": 5,
+        "instruction-memory": 34
+      }
+    },
+    {
+      "path": "test/commands/workflow-instructions-skipped.test.ts",
+      "size": 5872,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 4,
+        "model": 13,
+        "prompt": 4,
+        "state-context": 14,
+        "artifact-event": 14,
+        "instruction-memory": 23
+      }
+    },
+    {
+      "path": "test/core/artifact-graph/graph.test.ts",
+      "size": 13249,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 85,
+        "model": 56,
+        "prompt": 56,
+        "memory-rag": 8,
+        "artifact-event": 64
+      }
+    },
+    {
+      "path": "test/core/artifact-graph/instruction-loader.test.ts",
+      "size": 32629,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 7,
+        "model": 34,
+        "prompt": 67,
+        "state-context": 176,
+        "memory-rag": 3,
+        "artifact-event": 76,
+        "instruction-memory": 93
+      }
+    },
+    {
+      "path": "test/core/artifact-graph/outputs.test.ts",
+      "size": 27729,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "model": 4,
+        "memory-rag": 3,
+        "artifact-event": 85,
+        "permission-safety": 1,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "test/core/artifact-graph/resolver.test.ts",
+      "size": 29416,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 17,
+        "model": 14,
+        "prompt": 14,
+        "artifact-event": 44
+      }
+    },
+    {
+      "path": "test/core/artifact-graph/schema-apply-references.test.ts",
+      "size": 7384,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "model": 24,
+        "prompt": 5,
+        "artifact-event": 20
+      }
+    },
+    {
+      "path": "test/core/artifact-graph/schema.test.ts",
+      "size": 7133,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "model": 24,
+        "prompt": 36,
+        "memory-rag": 7,
+        "artifact-event": 30
+      }
+    },
+    {
+      "path": "test/core/artifact-graph/state.test.ts",
+      "size": 8438,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "agent-core",
+        "state-context",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 44,
+        "model": 18,
+        "prompt": 18,
+        "state-context": 3,
+        "artifact-event": 27
+      }
+    },
+    {
+      "path": "test/core/artifact-graph/workflow.integration.test.ts",
+      "size": 9141,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "agent-core",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 62,
+        "state-context": 2,
+        "artifact-event": 36,
+        "instruction-memory": 6
+      }
+    },
+    {
+      "path": "test/core/github-copilot-cloud-agent.test.ts",
+      "size": 35174,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "agent-core"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 232,
+        "tools": 4,
+        "model": 50,
+        "prompt": 3,
+        "state-context": 7,
+        "artifact-event": 11,
+        "permission-safety": 1,
+        "instruction-memory": 8
+      }
+    },
+    {
+      "path": "test/core/shared/profile-workflow-references.test.ts",
+      "size": 2001,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 20,
+        "prompt": 9,
+        "state-context": 1,
+        "instruction-memory": 15
+      }
+    },
+    {
+      "path": "test/core/templates/workflow-verb-triggers.test.ts",
+      "size": 10882,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "agent-core",
+        "prompts"
+      ],
+      "term_hits": {
+        "harness": 2,
+        "agent": 34,
+        "model": 7,
+        "prompt": 12,
+        "state-context": 2,
+        "memory-rag": 3,
+        "artifact-event": 2,
+        "permission-safety": 2,
+        "instruction-memory": 2
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v1.9.0-agents-skills/openspec-propose/SKILL.md",
+      "size": 11295,
+      "extension": ".md",
+      "role": [
+        "instruction-memory",
+        "agent-core"
+      ],
+      "term_hits": {
+        "harness": 3,
+        "agent": 13,
+        "tools": 3,
+        "model": 3,
+        "prompt": 4,
+        "state-context": 15,
+        "memory-rag": 1,
+        "artifact-event": 59,
+        "instruction-memory": 15
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v1.9.0-codex-agents-skills/openspec-propose/SKILL.md",
+      "size": 11344,
+      "extension": ".md",
+      "role": [
+        "instruction-memory",
+        "agent-core"
+      ],
+      "term_hits": {
+        "harness": 3,
+        "agent": 14,
+        "tools": 3,
+        "model": 3,
+        "prompt": 4,
+        "state-context": 15,
+        "memory-rag": 1,
+        "artifact-event": 59,
+        "instruction-memory": 15
+      }
+    },
+    {
+      "path": "website/cloudflare/router/worker.js",
+      "size": 2107,
+      "extension": ".js",
+      "role": [
+        "agent-core"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "model": 4,
+        "artifact-event": 7
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-08-06-adopt-future-state-storage/proposal.md",
+      "size": 1024,
+      "extension": ".md",
+      "role": [
+        "memory-rag",
+        "state-context"
+      ],
+      "term_hits": {
+        "tools": 2,
+        "state-context": 3,
+        "memory-rag": 2
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-08-06-adopt-future-state-storage/specs/openspec-conventions/spec.md",
+      "size": 4387,
+      "extension": ".md",
+      "role": [
+        "memory-rag",
+        "state-context"
+      ],
+      "term_hits": {
+        "tools": 7,
+        "model": 1,
+        "state-context": 12,
+        "memory-rag": 3,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-08-06-adopt-future-state-storage/tasks.md",
+      "size": 1522,
+      "extension": ".md",
+      "role": [
+        "memory-rag",
+        "state-context"
+      ],
+      "term_hits": {
+        "state-context": 3,
+        "memory-rag": 1,
+        "artifact-event": 1,
+        "permission-safety": 1,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-12-29-unify-change-state-model/design.md",
+      "size": 4408,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 9,
+        "model": 1,
+        "state-context": 1,
+        "artifact-event": 10
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-12-29-unify-change-state-model/proposal.md",
+      "size": 3745,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 5,
+        "model": 1,
+        "state-context": 4,
+        "artifact-event": 8,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-12-29-unify-change-state-model/specs/cli-view/spec.md",
+      "size": 2033,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "state-context": 1,
+        "eval-observability": 2
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-12-29-unify-change-state-model/tasks.md",
+      "size": 1234,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 4,
+        "model": 2,
+        "state-context": 2,
+        "artifact-event": 2,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-02-17-project-config/specs/context-injection/spec.md",
+      "size": 2202,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "model": 1,
+        "prompt": 2,
+        "state-context": 36,
+        "artifact-event": 4,
+        "instruction-memory": 9
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-19-extend-config-injection-to-apply-archive/specs/context-injection/spec.md",
+      "size": 2422,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 9,
+        "prompt": 2,
+        "state-context": 28,
+        "instruction-memory": 10
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/.initiative.yaml",
+      "size": 746,
+      "extension": ".yaml",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "state-context": 3,
+        "artifact-event": 1
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/README.md",
+      "size": 1878,
+      "extension": ".md",
+      "role": [
+        "docs",
+        "state-context"
+      ],
+      "term_hits": {
+        "model": 5,
+        "state-context": 8,
+        "artifact-event": 2
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/decisions.md",
+      "size": 10698,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "harness": 11,
+        "agent": 22,
+        "tools": 8,
+        "model": 17,
+        "prompt": 2,
+        "state-context": 28,
+        "memory-rag": 2,
+        "artifact-event": 7,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/direction-git-native-work.md",
+      "size": 11595,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 6,
+        "tools": 1,
+        "model": 4,
+        "prompt": 1,
+        "state-context": 19,
+        "memory-rag": 3,
+        "artifact-event": 12,
+        "permission-safety": 1,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/direction.md",
+      "size": 13109,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "harness": 5,
+        "agent": 17,
+        "tools": 2,
+        "model": 12,
+        "prompt": 2,
+        "state-context": 58,
+        "memory-rag": 2,
+        "artifact-event": 3,
+        "permission-safety": 1,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/questions.md",
+      "size": 1033,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "model": 1,
+        "state-context": 8
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/roadmap.md",
+      "size": 29434,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "harness": 13,
+        "agent": 49,
+        "tools": 9,
+        "model": 26,
+        "prompt": 5,
+        "state-context": 87,
+        "memory-rag": 4,
+        "artifact-event": 14,
+        "permission-safety": 3,
+        "instruction-memory": 4
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/tasks.md",
+      "size": 14439,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "harness": 2,
+        "agent": 18,
+        "tools": 5,
+        "model": 13,
+        "prompt": 5,
+        "state-context": 39,
+        "memory-rag": 1,
+        "artifact-event": 13,
+        "permission-safety": 1,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/01-lock-the-direction/evidence.md",
+      "size": 6355,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 7,
+        "model": 1,
+        "prompt": 1,
+        "state-context": 4,
+        "artifact-event": 4
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/01-lock-the-direction/plan.md",
+      "size": 3077,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "harness": 2,
+        "agent": 4,
+        "model": 3,
+        "state-context": 5,
+        "artifact-event": 5,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/01-lock-the-direction/tasks.md",
+      "size": 1933,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "artifact-event": 3
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/02-stabilize-workspace-as-local-view/evidence.md",
+      "size": 3080,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 5,
+        "tools": 1,
+        "model": 4,
+        "prompt": 1,
+        "state-context": 10,
+        "memory-rag": 1,
+        "artifact-event": 5
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/02-stabilize-workspace-as-local-view/plan.md",
+      "size": 2723,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 4,
+        "tools": 1,
+        "model": 5,
+        "state-context": 8,
+        "artifact-event": 1
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/02-stabilize-workspace-as-local-view/tasks.md",
+      "size": 1229,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 3,
+        "tools": 1,
+        "model": 3,
+        "state-context": 2,
+        "memory-rag": 1,
+        "artifact-event": 2
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/03-add-context-store-foundation/evidence.md",
+      "size": 1819,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "tools": 2,
+        "state-context": 10,
+        "memory-rag": 3
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/03-add-context-store-foundation/plan.md",
+      "size": 2575,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "model": 1,
+        "state-context": 20,
+        "memory-rag": 2
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/03-add-context-store-foundation/tasks.md",
+      "size": 827,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "state-context": 4
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/04-add-collection-foundation/evidence.md",
+      "size": 2884,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "harness": 7,
+        "agent": 1,
+        "state-context": 11,
+        "memory-rag": 2
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/04-add-collection-foundation/plan.md",
+      "size": 5775,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "harness": 8,
+        "agent": 1,
+        "model": 1,
+        "prompt": 2,
+        "state-context": 28,
+        "memory-rag": 2,
+        "permission-safety": 1
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/04-add-collection-foundation/tasks.md",
+      "size": 666,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "harness": 3,
+        "model": 1,
+        "state-context": 2
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/05-ship-initiative-mvp/evidence.md",
+      "size": 5221,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "harness": 2,
+        "model": 4,
+        "prompt": 11,
+        "state-context": 8,
+        "memory-rag": 4,
+        "permission-safety": 1
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/05-ship-initiative-mvp/plan.md",
+      "size": 8304,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "harness": 2,
+        "agent": 4,
+        "model": 4,
+        "prompt": 6,
+        "state-context": 12,
+        "memory-rag": 6,
+        "artifact-event": 1,
+        "permission-safety": 2
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/05-ship-initiative-mvp/tasks.md",
+      "size": 1120,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "prompt": 3,
+        "state-context": 1
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/06-add-minimal-context-store-ux/evidence.md",
+      "size": 5370,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 6,
+        "model": 1,
+        "prompt": 3,
+        "state-context": 24,
+        "memory-rag": 2,
+        "permission-safety": 3
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/06-add-minimal-context-store-ux/plan.md",
+      "size": 11222,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 7,
+        "prompt": 6,
+        "state-context": 68,
+        "memory-rag": 2,
+        "permission-safety": 3
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/06-add-minimal-context-store-ux/tasks.md",
+      "size": 1649,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "state-context": 7,
+        "memory-rag": 1
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/08-connect-repo-local-changes-to-initiatives/evidence.md",
+      "size": 8592,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 16,
+        "tools": 4,
+        "model": 2,
+        "state-context": 12,
+        "memory-rag": 2,
+        "artifact-event": 4,
+        "instruction-memory": 9
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/08-connect-repo-local-changes-to-initiatives/plan.md",
+      "size": 9697,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 14,
+        "tools": 3,
+        "model": 2,
+        "prompt": 1,
+        "state-context": 16,
+        "memory-rag": 2,
+        "artifact-event": 1,
+        "permission-safety": 1,
+        "instruction-memory": 7
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/08-connect-repo-local-changes-to-initiatives/tasks.md",
+      "size": 1033,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "instruction-memory": 2
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/09-add-initiative-resolve/decision-review.md",
+      "size": 1890,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "state-context": 3,
+        "artifact-event": 1
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/09-add-initiative-resolve/evidence.md",
+      "size": 2973,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "model": 1,
+        "state-context": 10,
+        "memory-rag": 1,
+        "artifact-event": 1,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/09-add-initiative-resolve/plan.md",
+      "size": 4236,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 3,
+        "state-context": 10,
+        "artifact-event": 2
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/09-add-initiative-resolve/tasks.md",
+      "size": 878,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "state-context": 1
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/10-let-workspaces-open-initiatives/plan.md",
+      "size": 14456,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "harness": 22,
+        "agent": 10,
+        "tools": 7,
+        "model": 34,
+        "prompt": 2,
+        "state-context": 41,
+        "memory-rag": 3,
+        "artifact-event": 3,
+        "permission-safety": 1
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/10-let-workspaces-open-initiatives/tasks.md",
+      "size": 1905,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "harness": 4,
+        "agent": 1,
+        "model": 4,
+        "prompt": 1,
+        "state-context": 6,
+        "memory-rag": 1,
+        "artifact-event": 1
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/11-manual-beta-reality-pass/notes.md",
+      "size": 17952,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "harness": 6,
+        "agent": 55,
+        "tools": 12,
+        "model": 10,
+        "prompt": 12,
+        "state-context": 55,
+        "memory-rag": 1,
+        "artifact-event": 16,
+        "permission-safety": 2,
+        "eval-observability": 5,
+        "instruction-memory": 2
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/11-manual-beta-reality-pass/plan.md",
+      "size": 906,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 3,
+        "prompt": 1,
+        "state-context": 2
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/11-manual-beta-reality-pass/tasks.md",
+      "size": 423,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "prompt": 2
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/12-context-store-first-run-and-cleanup-ux/evidence.md",
+      "size": 1807,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "prompt": 1,
+        "state-context": 10,
+        "permission-safety": 1
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/12-context-store-first-run-and-cleanup-ux/plan.md",
+      "size": 6151,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 6,
+        "model": 1,
+        "prompt": 2,
+        "state-context": 34,
+        "permission-safety": 2
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/12-context-store-first-run-and-cleanup-ux/tasks.md",
+      "size": 1268,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "prompt": 2,
+        "state-context": 3,
+        "permission-safety": 1
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/14-workspaces-beta-guide-split/plan.md",
+      "size": 1208,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "ui"
+      ],
+      "term_hits": {
+        "agent": 6,
+        "model": 1,
+        "prompt": 3,
+        "state-context": 1,
+        "artifact-event": 1
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/14-workspaces-beta-guide-split/tasks.md",
+      "size": 463,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "ui"
+      ],
+      "term_hits": {
+        "agent": 3,
+        "prompt": 1
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/15-context-store-project-roots-and-schema-led-initiatives/evidence.md",
+      "size": 5019,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 13,
+        "model": 5,
+        "prompt": 5,
+        "state-context": 22,
+        "artifact-event": 14,
+        "eval-observability": 2,
+        "instruction-memory": 5
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/15-context-store-project-roots-and-schema-led-initiatives/plan.md",
+      "size": 11594,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 30,
+        "tools": 5,
+        "model": 8,
+        "prompt": 6,
+        "state-context": 45,
+        "artifact-event": 36,
+        "eval-observability": 10,
+        "instruction-memory": 9
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/15-context-store-project-roots-and-schema-led-initiatives/tasks.md",
+      "size": 2372,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 4,
+        "model": 1,
+        "prompt": 1,
+        "state-context": 7,
+        "artifact-event": 8,
+        "instruction-memory": 2
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/16-add-escalation-ux/plan.md",
+      "size": 772,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "model": 1,
+        "prompt": 1,
+        "state-context": 1,
+        "memory-rag": 1
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/16-add-escalation-ux/tasks.md",
+      "size": 308,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "prompt": 2,
+        "state-context": 1,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/17-harden-team-shared-coordination/plan.md",
+      "size": 670,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "state-context": 3
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/17-harden-team-shared-coordination/tasks.md",
+      "size": 324,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "model": 1,
+        "state-context": 2
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/18-explore-initiative-hosted-target-bound-change-artifacts/evidence.md",
+      "size": 13107,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 33,
+        "tools": 6,
+        "model": 12,
+        "prompt": 1,
+        "state-context": 31,
+        "memory-rag": 5,
+        "artifact-event": 17,
+        "permission-safety": 1,
+        "instruction-memory": 2
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/18-explore-initiative-hosted-target-bound-change-artifacts/plan.md",
+      "size": 6844,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 5,
+        "tools": 2,
+        "model": 5,
+        "state-context": 14,
+        "memory-rag": 2,
+        "artifact-event": 20,
+        "permission-safety": 3,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/18-explore-initiative-hosted-target-bound-change-artifacts/tasks.md",
+      "size": 1607,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "artifact-event"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "tools": 1,
+        "prompt": 1,
+        "state-context": 1,
+        "artifact-event": 8
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/19-review-workspace-beta-compatibility-before-public-release/plan.md",
+      "size": 2429,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "model": 3,
+        "state-context": 3,
+        "eval-observability": 1
+      }
+    },
+    {
+      "path": "openspec/initiatives/context-store-and-initiatives/work-items/19-review-workspace-beta-compatibility-before-public-release/tasks.md",
+      "size": 718,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "model": 2,
+        "state-context": 1
+      }
+    },
+    {
+      "path": "openspec/specs/context-injection/spec.md",
+      "size": 4755,
+      "extension": ".md",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 10,
+        "model": 1,
+        "prompt": 4,
+        "state-context": 65,
+        "artifact-event": 4,
+        "instruction-memory": 20
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/capstone/gauntlet.md",
+      "size": 6803,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 10,
+        "tools": 4,
+        "model": 3,
+        "prompt": 3,
+        "state-context": 2,
+        "memory-rag": 1,
+        "artifact-event": 3,
+        "permission-safety": 1,
+        "instruction-memory": 3
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/capstone/journeys.md",
+      "size": 2587,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 3,
+        "prompt": 2,
+        "state-context": 7,
+        "memory-rag": 1,
+        "artifact-event": 2,
+        "instruction-memory": 2
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/capstone/release-readiness.md",
+      "size": 7066,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 13,
+        "tools": 2,
+        "model": 6,
+        "prompt": 4,
+        "state-context": 10,
+        "memory-rag": 1,
+        "artifact-event": 4,
+        "instruction-memory": 4
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/capstone/technical-audits.md",
+      "size": 3888,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 4,
+        "tools": 1,
+        "model": 2,
+        "prompt": 2,
+        "state-context": 1,
+        "memory-rag": 2,
+        "artifact-event": 1,
+        "instruction-memory": 4
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/capstone/usability-audits.md",
+      "size": 3802,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "tools": 1,
+        "model": 3,
+        "prompt": 1,
+        "state-context": 4,
+        "artifact-event": 1,
+        "eval-observability": 1,
+        "instruction-memory": 2
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/goal.md",
+      "size": 3096,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "tools": 1,
+        "model": 5,
+        "state-context": 9,
+        "artifact-event": 1,
+        "instruction-memory": 4
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/roadmap.md",
+      "size": 111229,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "harness": 6,
+        "agent": 116,
+        "tools": 64,
+        "model": 48,
+        "prompt": 42,
+        "state-context": 171,
+        "memory-rag": 28,
+        "artifact-event": 50,
+        "permission-safety": 11,
+        "eval-observability": 7,
+        "instruction-memory": 45
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/runbook.md",
+      "size": 13983,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 26,
+        "tools": 5,
+        "model": 11,
+        "prompt": 3,
+        "state-context": 16,
+        "memory-rag": 6,
+        "artifact-event": 4,
+        "permission-safety": 1,
+        "eval-observability": 3,
+        "instruction-memory": 7
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/slices/assemble-working-context/plan.md",
+      "size": 970,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "state-context": 5,
+        "memory-rag": 2
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/slices/assemble-working-context/spec.md",
+      "size": 4295,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "state-context": 24,
+        "artifact-event": 6,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/slices/declared-store-fallback/plan.md",
+      "size": 9596,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 3,
+        "prompt": 2,
+        "state-context": 5,
+        "artifact-event": 5,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/slices/declared-store-fallback/spec.md",
+      "size": 12980,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "tools": 2,
+        "state-context": 18,
+        "memory-rag": 3,
+        "artifact-event": 1,
+        "eval-observability": 1,
+        "instruction-memory": 3
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/slices/delete-legacy-command-groups/deletion-ledger.md",
+      "size": 4412,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 4,
+        "tools": 9,
+        "model": 2,
+        "prompt": 1,
+        "state-context": 11,
+        "memory-rag": 3,
+        "artifact-event": 1,
+        "permission-safety": 3
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/slices/delete-legacy-command-groups/plan.md",
+      "size": 10160,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "tools": 1,
+        "model": 1,
+        "prompt": 2,
+        "state-context": 15,
+        "memory-rag": 6,
+        "artifact-event": 1,
+        "permission-safety": 1,
+        "instruction-memory": 6
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/slices/delete-legacy-command-groups/remainder.md",
+      "size": 2654,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 4,
+        "model": 1,
+        "prompt": 2,
+        "state-context": 4,
+        "artifact-event": 3,
+        "instruction-memory": 2
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/slices/delete-legacy-command-groups/spec.md",
+      "size": 16768,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "harness": 2,
+        "agent": 6,
+        "tools": 4,
+        "model": 8,
+        "prompt": 4,
+        "state-context": 36,
+        "memory-rag": 8,
+        "artifact-event": 1,
+        "permission-safety": 2,
+        "instruction-memory": 14
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/slices/personal-worksets/capstone-dogfood.md",
+      "size": 6605,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 5,
+        "tools": 22,
+        "model": 13,
+        "prompt": 4,
+        "state-context": 22,
+        "memory-rag": 3,
+        "permission-safety": 2,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/slices/personal-worksets/plan.md",
+      "size": 18808,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "harness": 2,
+        "agent": 3,
+        "tools": 36,
+        "model": 5,
+        "prompt": 11,
+        "state-context": 29,
+        "memory-rag": 10,
+        "artifact-event": 7,
+        "eval-observability": 2,
+        "instruction-memory": 4
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/slices/personal-worksets/research.md",
+      "size": 20488,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 19,
+        "tools": 11,
+        "model": 14,
+        "prompt": 18,
+        "state-context": 24,
+        "memory-rag": 4,
+        "artifact-event": 2,
+        "permission-safety": 5,
+        "eval-observability": 2,
+        "instruction-memory": 2
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/slices/personal-worksets/spec.md",
+      "size": 34146,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "harness": 5,
+        "agent": 12,
+        "tools": 91,
+        "model": 33,
+        "prompt": 17,
+        "state-context": 39,
+        "memory-rag": 4,
+        "artifact-event": 3,
+        "permission-safety": 5,
+        "eval-observability": 1,
+        "instruction-memory": 5
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/slices/relationship-health/plan.md",
+      "size": 1086,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "memory-rag": 2
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/slices/relationship-health/spec.md",
+      "size": 4452,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "state-context": 4,
+        "memory-rag": 3,
+        "artifact-event": 2
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/slices/store-canonical-remote/plan.md",
+      "size": 10696,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "prompt": 2,
+        "state-context": 10,
+        "memory-rag": 6,
+        "artifact-event": 3,
+        "permission-safety": 1,
+        "instruction-memory": 3
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/slices/store-canonical-remote/spec.md",
+      "size": 15663,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "state-context": 32,
+        "memory-rag": 6,
+        "instruction-memory": 7
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/slices/store-lifecycle-proof/plan.md",
+      "size": 22382,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 9,
+        "prompt": 13,
+        "state-context": 41,
+        "memory-rag": 12,
+        "artifact-event": 8,
+        "instruction-memory": 5
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/slices/store-lifecycle-proof/spec.md",
+      "size": 17164,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "harness": 2,
+        "agent": 3,
+        "model": 1,
+        "prompt": 3,
+        "state-context": 37,
+        "memory-rag": 1,
+        "artifact-event": 5,
+        "instruction-memory": 6
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/slices/store-references/plan.md",
+      "size": 11035,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 7,
+        "tools": 3,
+        "model": 7,
+        "state-context": 13,
+        "memory-rag": 12,
+        "artifact-event": 18,
+        "eval-observability": 1,
+        "instruction-memory": 27
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/slices/store-references/spec.md",
+      "size": 15444,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 15,
+        "tools": 1,
+        "model": 5,
+        "prompt": 2,
+        "state-context": 38,
+        "memory-rag": 29,
+        "artifact-event": 17,
+        "eval-observability": 2,
+        "instruction-memory": 35
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/slices/store-rename-and-guidance/dogfood-transcript.md",
+      "size": 3338,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider",
+        "ui"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 6,
+        "tools": 10,
+        "model": 6,
+        "prompt": 5,
+        "state-context": 15,
+        "artifact-event": 5,
+        "permission-safety": 1,
+        "eval-observability": 1,
+        "instruction-memory": 2
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/slices/store-rename-and-guidance/plan.md",
+      "size": 22345,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider",
+        "ui"
+      ],
+      "term_hits": {
+        "harness": 3,
+        "agent": 15,
+        "tools": 7,
+        "model": 11,
+        "prompt": 20,
+        "state-context": 96,
+        "memory-rag": 5,
+        "artifact-event": 14,
+        "permission-safety": 2,
+        "eval-observability": 3,
+        "instruction-memory": 5
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/slices/store-rename-and-guidance/spec.md",
+      "size": 24747,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider",
+        "ui"
+      ],
+      "term_hits": {
+        "harness": 3,
+        "agent": 28,
+        "tools": 2,
+        "model": 11,
+        "prompt": 15,
+        "state-context": 73,
+        "memory-rag": 4,
+        "artifact-event": 2,
+        "eval-observability": 4,
+        "instruction-memory": 5
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/slices/store-root-parity/plan.md",
+      "size": 20976,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 18,
+        "tools": 6,
+        "model": 11,
+        "prompt": 4,
+        "state-context": 72,
+        "memory-rag": 1,
+        "artifact-event": 3,
+        "permission-safety": 3
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/slices/store-root-parity/spec.md",
+      "size": 10865,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 5,
+        "tools": 4,
+        "model": 10,
+        "state-context": 49,
+        "artifact-event": 1
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/slices/store-root-selection/plan.md",
+      "size": 24943,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 13,
+        "prompt": 2,
+        "state-context": 35,
+        "memory-rag": 3,
+        "artifact-event": 8,
+        "instruction-memory": 13
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/slices/store-root-selection/spec.md",
+      "size": 17092,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 6,
+        "model": 1,
+        "prompt": 1,
+        "state-context": 43,
+        "artifact-event": 3,
+        "instruction-memory": 5
+      }
+    },
+    {
+      "path": "openspec/work/simplify-context-and-workspace-model/workset-direction.md",
+      "size": 4614,
+      "extension": ".md",
+      "role": [
+        "state-context",
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 6,
+        "model": 2,
+        "prompt": 1,
+        "state-context": 6,
+        "artifact-event": 1,
+        "permission-safety": 3,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "src/cli/commands/context.ts",
+      "size": 1124,
+      "extension": ".ts",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "tools": 1,
+        "state-context": 10
+      }
+    },
+    {
+      "path": "src/commands/context.ts",
+      "size": 6464,
+      "extension": ".ts",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "state-context": 10,
+        "memory-rag": 1
+      }
+    },
+    {
+      "path": "src/core/file-state.ts",
+      "size": 6410,
+      "extension": ".ts",
+      "role": [
+        "state-context"
+      ],
+      "term_hits": {
+        "prompt": 3,
+        "state-context": 1,
+        "permission-safety": 3,
+        "eval-observability": 1
+      }
+    },
+    {
+      "path": "test/commands/context.test.ts",
+      "size": 14815,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "state-context"
+      ],
+      "term_hits": {
+        "state-context": 94,
+        "memory-rag": 1,
+        "artifact-event": 15,
+        "eval-observability": 1,
+        "instruction-memory": 6
+      }
+    },
+    {
+      "path": "test/commands/store-action-context.test.ts",
+      "size": 6227,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "tools",
+        "state-context"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "tools": 14,
+        "state-context": 34,
+        "memory-rag": 1,
+        "artifact-event": 5,
+        "eval-observability": 1
+      }
+    },
+    {
+      "path": "test/core/file-state.test.ts",
+      "size": 7313,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "state-context"
+      ],
+      "term_hits": {
+        "model": 1,
+        "state-context": 20,
+        "memory-rag": 1,
+        "permission-safety": 4
+      }
+    },
+    {
+      "path": "docs-lab/customize/skills.md",
+      "size": 525,
+      "extension": ".md",
+      "role": [
+        "instruction-memory"
+      ],
+      "term_hits": {
+        "prompt": 2,
+        "memory-rag": 1
+      }
+    },
+    {
+      "path": "docs-lab/reference/skills.md",
+      "size": 14139,
+      "extension": ".md",
+      "role": [
+        "instruction-memory"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 12,
+        "tools": 6,
+        "model": 1,
+        "prompt": 7,
+        "state-context": 6,
+        "memory-rag": 2,
+        "artifact-event": 35,
+        "permission-safety": 1,
+        "instruction-memory": 11
+      }
+    },
+    {
+      "path": "skills/openspec-apply-change/SKILL.md",
+      "size": 11242,
+      "extension": ".md",
+      "role": [
+        "instruction-memory"
+      ],
+      "term_hits": {
+        "harness": 3,
+        "agent": 7,
+        "tools": 7,
+        "model": 1,
+        "prompt": 3,
+        "state-context": 26,
+        "artifact-event": 17,
+        "instruction-memory": 15
+      }
+    },
+    {
+      "path": "skills/openspec-archive-change/SKILL.md",
+      "size": 17989,
+      "extension": ".md",
+      "role": [
+        "instruction-memory"
+      ],
+      "term_hits": {
+        "harness": 3,
+        "agent": 15,
+        "tools": 3,
+        "model": 1,
+        "prompt": 12,
+        "state-context": 11,
+        "artifact-event": 21,
+        "instruction-memory": 5
+      }
+    },
+    {
+      "path": "skills/openspec-bulk-archive-change/SKILL.md",
+      "size": 23017,
+      "extension": ".md",
+      "role": [
+        "instruction-memory"
+      ],
+      "term_hits": {
+        "harness": 4,
+        "agent": 15,
+        "tools": 3,
+        "prompt": 7,
+        "state-context": 9,
+        "artifact-event": 20,
+        "eval-observability": 1,
+        "instruction-memory": 7
+      }
+    },
+    {
+      "path": "skills/openspec-continue-change/SKILL.md",
+      "size": 10646,
+      "extension": ".md",
+      "role": [
+        "instruction-memory"
+      ],
+      "term_hits": {
+        "harness": 4,
+        "agent": 6,
+        "tools": 3,
+        "prompt": 5,
+        "state-context": 15,
+        "memory-rag": 1,
+        "artifact-event": 44,
+        "instruction-memory": 13
+      }
+    },
+    {
+      "path": "skills/openspec-explore/SKILL.md",
+      "size": 23408,
+      "extension": ".md",
+      "role": [
+        "instruction-memory"
+      ],
+      "term_hits": {
+        "harness": 3,
+        "agent": 8,
+        "tools": 12,
+        "model": 1,
+        "prompt": 2,
+        "state-context": 25,
+        "memory-rag": 3,
+        "artifact-event": 45,
+        "permission-safety": 1,
+        "eval-observability": 3,
+        "instruction-memory": 11
+      }
+    },
+    {
+      "path": "skills/openspec-ff-change/SKILL.md",
+      "size": 11606,
+      "extension": ".md",
+      "role": [
+        "instruction-memory"
+      ],
+      "term_hits": {
+        "harness": 3,
+        "agent": 3,
+        "tools": 3,
+        "model": 1,
+        "prompt": 4,
+        "state-context": 16,
+        "memory-rag": 1,
+        "artifact-event": 55,
+        "instruction-memory": 14
+      }
+    },
+    {
+      "path": "skills/openspec-new-change/SKILL.md",
+      "size": 5877,
+      "extension": ".md",
+      "role": [
+        "instruction-memory"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 11,
+        "tools": 2,
+        "prompt": 4,
+        "state-context": 2,
+        "artifact-event": 16,
+        "instruction-memory": 4
+      }
+    },
+    {
+      "path": "skills/openspec-onboard/SKILL.md",
+      "size": 16809,
+      "extension": ".md",
+      "role": [
+        "instruction-memory"
+      ],
+      "term_hits": {
+        "harness": 3,
+        "agent": 13,
+        "tools": 4,
+        "model": 1,
+        "prompt": 1,
+        "state-context": 12,
+        "artifact-event": 11,
+        "permission-safety": 4,
+        "instruction-memory": 7
+      }
+    },
+    {
+      "path": "skills/openspec-propose/SKILL.md",
+      "size": 16637,
+      "extension": ".md",
+      "role": [
+        "instruction-memory"
+      ],
+      "term_hits": {
+        "harness": 4,
+        "agent": 17,
+        "tools": 4,
+        "model": 2,
+        "prompt": 4,
+        "state-context": 32,
+        "memory-rag": 1,
+        "artifact-event": 62,
+        "instruction-memory": 15
+      }
+    },
+    {
+      "path": "skills/openspec-sync-specs/SKILL.md",
+      "size": 15761,
+      "extension": ".md",
+      "role": [
+        "instruction-memory"
+      ],
+      "term_hits": {
+        "harness": 2,
+        "agent": 6,
+        "tools": 2,
+        "prompt": 2,
+        "state-context": 5,
+        "artifact-event": 10,
+        "instruction-memory": 7
+      }
+    },
+    {
+      "path": "skills/openspec-update-change/SKILL.md",
+      "size": 11249,
+      "extension": ".md",
+      "role": [
+        "instruction-memory"
+      ],
+      "term_hits": {
+        "harness": 2,
+        "agent": 7,
+        "tools": 3,
+        "model": 1,
+        "prompt": 4,
+        "state-context": 7,
+        "artifact-event": 54,
+        "instruction-memory": 8
+      }
+    },
+    {
+      "path": "skills/openspec-verify-change/SKILL.md",
+      "size": 20462,
+      "extension": ".md",
+      "role": [
+        "instruction-memory"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 4,
+        "tools": 6,
+        "model": 1,
+        "prompt": 2,
+        "state-context": 18,
+        "memory-rag": 14,
+        "artifact-event": 27,
+        "eval-observability": 1,
+        "instruction-memory": 4
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v1.10.0-amazonq/skills/openspec-explore/SKILL.md",
+      "size": 16233,
+      "extension": ".md",
+      "role": [
+        "instruction-memory"
+      ],
+      "term_hits": {
+        "harness": 2,
+        "agent": 5,
+        "tools": 5,
+        "model": 1,
+        "prompt": 1,
+        "state-context": 17,
+        "memory-rag": 2,
+        "artifact-event": 30,
+        "eval-observability": 3,
+        "instruction-memory": 11
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v1.16.0-claude-skills/openspec-apply-change/SKILL.md",
+      "size": 11139,
+      "extension": ".md",
+      "role": [
+        "instruction-memory",
+        "model-provider"
+      ],
+      "term_hits": {
+        "harness": 2,
+        "agent": 7,
+        "tools": 7,
+        "model": 2,
+        "prompt": 3,
+        "state-context": 26,
+        "artifact-event": 16,
+        "instruction-memory": 14
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v1.16.0-claude-skills/openspec-archive-change/SKILL.md",
+      "size": 16583,
+      "extension": ".md",
+      "role": [
+        "instruction-memory",
+        "model-provider"
+      ],
+      "term_hits": {
+        "harness": 2,
+        "agent": 15,
+        "tools": 3,
+        "model": 3,
+        "prompt": 12,
+        "state-context": 11,
+        "artifact-event": 21,
+        "instruction-memory": 5
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v1.16.0-claude-skills/openspec-bulk-archive-change/SKILL.md",
+      "size": 22320,
+      "extension": ".md",
+      "role": [
+        "instruction-memory",
+        "model-provider"
+      ],
+      "term_hits": {
+        "harness": 3,
+        "agent": 15,
+        "tools": 3,
+        "model": 1,
+        "prompt": 7,
+        "state-context": 9,
+        "artifact-event": 20,
+        "eval-observability": 1,
+        "instruction-memory": 7
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v1.16.0-claude-skills/openspec-continue-change/SKILL.md",
+      "size": 10707,
+      "extension": ".md",
+      "role": [
+        "instruction-memory",
+        "model-provider"
+      ],
+      "term_hits": {
+        "harness": 3,
+        "agent": 6,
+        "tools": 3,
+        "model": 1,
+        "prompt": 5,
+        "state-context": 15,
+        "memory-rag": 1,
+        "artifact-event": 44,
+        "instruction-memory": 13
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v1.16.0-claude-skills/openspec-explore/SKILL.md",
+      "size": 23471,
+      "extension": ".md",
+      "role": [
+        "instruction-memory",
+        "model-provider"
+      ],
+      "term_hits": {
+        "harness": 2,
+        "agent": 8,
+        "tools": 12,
+        "model": 2,
+        "prompt": 2,
+        "state-context": 25,
+        "memory-rag": 3,
+        "artifact-event": 45,
+        "permission-safety": 1,
+        "eval-observability": 3,
+        "instruction-memory": 11
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v1.16.0-claude-skills/openspec-ff-change/SKILL.md",
+      "size": 11624,
+      "extension": ".md",
+      "role": [
+        "instruction-memory",
+        "model-provider"
+      ],
+      "term_hits": {
+        "harness": 2,
+        "agent": 3,
+        "tools": 3,
+        "model": 2,
+        "prompt": 4,
+        "state-context": 16,
+        "memory-rag": 1,
+        "artifact-event": 55,
+        "instruction-memory": 14
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v1.16.0-claude-skills/openspec-new-change/SKILL.md",
+      "size": 5894,
+      "extension": ".md",
+      "role": [
+        "instruction-memory",
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 11,
+        "tools": 2,
+        "model": 1,
+        "prompt": 4,
+        "state-context": 2,
+        "artifact-event": 16,
+        "instruction-memory": 4
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v1.16.0-claude-skills/openspec-onboard/SKILL.md",
+      "size": 18244,
+      "extension": ".md",
+      "role": [
+        "instruction-memory",
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 8,
+        "tools": 4,
+        "model": 4,
+        "prompt": 1,
+        "state-context": 11,
+        "artifact-event": 18,
+        "permission-safety": 4,
+        "instruction-memory": 7
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v1.16.0-claude-skills/openspec-propose/SKILL.md",
+      "size": 16689,
+      "extension": ".md",
+      "role": [
+        "instruction-memory",
+        "model-provider"
+      ],
+      "term_hits": {
+        "harness": 3,
+        "agent": 17,
+        "tools": 4,
+        "model": 3,
+        "prompt": 4,
+        "state-context": 32,
+        "memory-rag": 1,
+        "artifact-event": 63,
+        "instruction-memory": 15
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v1.16.0-claude-skills/openspec-sync-specs/SKILL.md",
+      "size": 15769,
+      "extension": ".md",
+      "role": [
+        "instruction-memory",
+        "model-provider"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 6,
+        "tools": 2,
+        "model": 1,
+        "prompt": 2,
+        "state-context": 5,
+        "artifact-event": 10,
+        "instruction-memory": 7
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v1.16.0-claude-skills/openspec-update-change/SKILL.md",
+      "size": 11088,
+      "extension": ".md",
+      "role": [
+        "instruction-memory",
+        "model-provider"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 8,
+        "tools": 3,
+        "model": 2,
+        "prompt": 4,
+        "state-context": 7,
+        "artifact-event": 48,
+        "instruction-memory": 7
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v1.16.0-claude-skills/openspec-verify-change/SKILL.md",
+      "size": 20469,
+      "extension": ".md",
+      "role": [
+        "instruction-memory",
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 4,
+        "tools": 6,
+        "model": 2,
+        "prompt": 2,
+        "state-context": 18,
+        "memory-rag": 14,
+        "artifact-event": 27,
+        "eval-observability": 1,
+        "instruction-memory": 4
+      }
+    },
+    {
+      "path": "docs-lab/reference/supported-tools.md",
+      "size": 13595,
+      "extension": ".md",
+      "role": [
+        "tools"
+      ],
+      "term_hits": {
+        "harness": 6,
+        "agent": 98,
+        "tools": 68,
+        "model": 13,
+        "prompt": 6,
+        "artifact-event": 2,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "docs/supported-tools.md",
+      "size": 18232,
+      "extension": ".md",
+      "role": [
+        "docs",
+        "tools"
+      ],
+      "term_hits": {
+        "harness": 4,
+        "agent": 82,
+        "tools": 64,
+        "model": 31,
+        "prompt": 23,
+        "state-context": 1,
+        "artifact-event": 1,
+        "instruction-memory": 9
+      }
+    },
+    {
+      "path": "openspec/changes/add-tool-command-surface-capabilities/.openspec.yaml",
+      "size": 40,
+      "extension": ".yaml",
+      "role": [
+        "tools"
+      ],
+      "term_hits": {}
+    },
+    {
+      "path": "openspec/changes/add-tool-command-surface-capabilities/proposal.md",
+      "size": 6300,
+      "extension": ".md",
+      "role": [
+        "tools"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 2,
+        "tools": 62,
+        "model": 13,
+        "prompt": 1,
+        "memory-rag": 2,
+        "artifact-event": 6
+      }
+    },
+    {
+      "path": "openspec/changes/add-tool-command-surface-capabilities/specs/cli-init/spec.md",
+      "size": 7077,
+      "extension": ".md",
+      "role": [
+        "tools"
+      ],
+      "term_hits": {
+        "agent": 3,
+        "tools": 74,
+        "model": 10,
+        "prompt": 1,
+        "artifact-event": 4
+      }
+    },
+    {
+      "path": "openspec/changes/add-tool-command-surface-capabilities/specs/cli-update/spec.md",
+      "size": 2732,
+      "extension": ".md",
+      "role": [
+        "tools"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "tools": 26,
+        "model": 4,
+        "artifact-event": 4,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/changes/add-tool-command-surface-capabilities/tasks.md",
+      "size": 4204,
+      "extension": ".md",
+      "role": [
+        "tools"
+      ],
+      "term_hits": {
+        "tools": 43,
+        "model": 10,
+        "instruction-memory": 2
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-08-19-fix-update-tool-selection/proposal.md",
+      "size": 1841,
+      "extension": ".md",
+      "role": [
+        "tools"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "tools": 17,
+        "model": 2
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-08-19-fix-update-tool-selection/specs/cli-update/spec.md",
+      "size": 888,
+      "extension": ".md",
+      "role": [
+        "tools"
+      ],
+      "term_hits": {
+        "tools": 6,
+        "model": 1,
+        "prompt": 1,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-08-19-fix-update-tool-selection/tasks.md",
+      "size": 872,
+      "extension": ".md",
+      "role": [
+        "tools"
+      ],
+      "term_hits": {
+        "tools": 4,
+        "model": 2
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-02-17-multi-provider-skill-generation/specs/ai-tool-paths/spec.md",
+      "size": 2101,
+      "extension": ".md",
+      "role": [
+        "tools",
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 4,
+        "tools": 23,
+        "model": 5
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-04-23-add-kimi-cli-skills-only-support/specs/ai-tool-paths/spec.md",
+      "size": 340,
+      "extension": ".md",
+      "role": [
+        "tools"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "tools": 8
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-07-11-add-grok-build-skills-only-support/specs/ai-tool-paths/spec.md",
+      "size": 1007,
+      "extension": ".md",
+      "role": [
+        "tools",
+        "ui"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "tools": 16,
+        "model": 3
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-08-15-add-dsh-support/specs/ai-tool-paths/spec.md",
+      "size": 1728,
+      "extension": ".md",
+      "role": [
+        "tools"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 2,
+        "tools": 17,
+        "model": 3
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-19-add-amp-support/specs/ai-tool-paths/spec.md",
+      "size": 1112,
+      "extension": ".md",
+      "role": [
+        "tools"
+      ],
+      "term_hits": {
+        "agent": 5,
+        "tools": 7,
+        "model": 3,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-19-add-devin-desktop-support/specs/ai-tool-paths/spec.md",
+      "size": 7419,
+      "extension": ".md",
+      "role": [
+        "tools"
+      ],
+      "term_hits": {
+        "harness": 2,
+        "agent": 7,
+        "tools": 29,
+        "model": 8,
+        "prompt": 2,
+        "state-context": 1,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-19-feat-add-omp-tool-support/.openspec.yaml",
+      "size": 40,
+      "extension": ".yaml",
+      "role": [
+        "tools"
+      ],
+      "term_hits": {}
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-19-feat-add-omp-tool-support/design.md",
+      "size": 4885,
+      "extension": ".md",
+      "role": [
+        "tools"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 4,
+        "tools": 19,
+        "model": 1,
+        "prompt": 4,
+        "state-context": 1,
+        "artifact-event": 1,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-19-feat-add-omp-tool-support/proposal.md",
+      "size": 2250,
+      "extension": ".md",
+      "role": [
+        "tools"
+      ],
+      "term_hits": {
+        "agent": 4,
+        "tools": 12,
+        "model": 2,
+        "memory-rag": 3
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-19-feat-add-omp-tool-support/specs/cli-init/spec.md",
+      "size": 915,
+      "extension": ".md",
+      "role": [
+        "tools"
+      ],
+      "term_hits": {
+        "tools": 3
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-19-feat-add-omp-tool-support/specs/cli-update/spec.md",
+      "size": 837,
+      "extension": ".md",
+      "role": [
+        "tools"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "tools": 3,
+        "prompt": 1,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-19-feat-add-omp-tool-support/specs/oh-my-pi-tool/spec.md",
+      "size": 3152,
+      "extension": ".md",
+      "role": [
+        "tools"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 5,
+        "tools": 5,
+        "model": 4
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-19-feat-add-omp-tool-support/tasks.md",
+      "size": 2214,
+      "extension": ".md",
+      "role": [
+        "tools"
+      ],
+      "term_hits": {
+        "tools": 12,
+        "model": 1,
+        "memory-rag": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-19-make-codex-skills-only/specs/ai-tool-paths/spec.md",
+      "size": 2768,
+      "extension": ".md",
+      "role": [
+        "tools"
+      ],
+      "term_hits": {
+        "agent": 3,
+        "tools": 2,
+        "model": 2,
+        "prompt": 19,
+        "artifact-event": 1,
+        "permission-safety": 2
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-19-rename-bob-to-ibm-bob/specs/ai-tool-paths/spec.md",
+      "size": 418,
+      "extension": ".md",
+      "role": [
+        "tools"
+      ],
+      "term_hits": {
+        "tools": 4,
+        "model": 1
+      }
+    },
+    {
+      "path": "openspec/specs/ai-tool-paths/spec.md",
+      "size": 14252,
+      "extension": ".md",
+      "role": [
+        "tools"
+      ],
+      "term_hits": {
+        "harness": 2,
+        "agent": 32,
+        "tools": 54,
+        "model": 18,
+        "prompt": 21,
+        "state-context": 1,
+        "artifact-event": 1,
+        "permission-safety": 2,
+        "instruction-memory": 2
+      }
+    },
+    {
+      "path": "openspec/specs/oh-my-pi-tool/spec.md",
+      "size": 3287,
+      "extension": ".md",
+      "role": [
+        "tools"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 5,
+        "tools": 7,
+        "model": 5
+      }
+    },
+    {
+      "path": "src/core/available-tools.ts",
+      "size": 3044,
+      "extension": ".ts",
+      "role": [
+        "tools"
+      ],
+      "term_hits": {
+        "agent": 7,
+        "tools": 50
+      }
+    },
+    {
+      "path": "src/core/retired-tools.ts",
+      "size": 4425,
+      "extension": ".ts",
+      "role": [
+        "tools"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "tools": 43,
+        "model": 4,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "src/core/shared/allowed-tools.ts",
+      "size": 631,
+      "extension": ".ts",
+      "role": [
+        "tools"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "tools": 9,
+        "model": 2,
+        "prompt": 1,
+        "permission-safety": 1
+      }
+    },
+    {
+      "path": "src/core/shared/tool-detection.ts",
+      "size": 14828,
+      "extension": ".ts",
+      "role": [
+        "tools"
+      ],
+      "term_hits": {
+        "agent": 11,
+        "tools": 197,
+        "model": 24,
+        "prompt": 1,
+        "state-context": 4,
+        "memory-rag": 3,
+        "artifact-event": 2,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "test/core/available-tools.test.ts",
+      "size": 26772,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "tools"
+      ],
+      "term_hits": {
+        "harness": 6,
+        "agent": 80,
+        "tools": 476,
+        "model": 14,
+        "prompt": 3,
+        "state-context": 2,
+        "instruction-memory": 4
+      }
+    },
+    {
+      "path": "test/core/retired-tools.test.ts",
+      "size": 5472,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "tools"
+      ],
+      "term_hits": {
+        "tools": 38,
+        "model": 1,
+        "prompt": 25
+      }
+    },
+    {
+      "path": "test/core/shared/tool-detection.test.ts",
+      "size": 21934,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "tools"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 27,
+        "tools": 158,
+        "model": 80,
+        "state-context": 25,
+        "memory-rag": 1,
+        "instruction-memory": 4
+      }
+    },
+    {
+      "path": "test/core/tool-search-aliases.test.ts",
+      "size": 2072,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "tools"
+      ],
+      "term_hits": {
+        "agent": 5,
+        "tools": 23,
+        "model": 2
+      }
+    },
+    {
+      "path": "test/helpers/fake-tool.ts",
+      "size": 1907,
+      "extension": ".ts",
+      "role": [
+        "tools"
+      ],
+      "term_hits": {
+        "tools": 6
+      }
+    },
+    {
+      "path": "SECURITY.md",
+      "size": 5859,
+      "extension": ".md",
+      "role": [
+        "permission-safety"
+      ],
+      "term_hits": {
+        "tools": 10,
+        "model": 3,
+        "prompt": 2,
+        "memory-rag": 1,
+        "permission-safety": 5,
+        "eval-observability": 7
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-19-add-skill-cli-auto-approval/proposal.md",
+      "size": 2609,
+      "extension": ".md",
+      "role": [
+        "permission-safety"
+      ],
+      "term_hits": {
+        "agent": 7,
+        "tools": 33,
+        "model": 11,
+        "prompt": 3,
+        "artifact-event": 4,
+        "permission-safety": 6,
+        "eval-observability": 1,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-19-add-skill-cli-auto-approval/specs/cli-init/spec.md",
+      "size": 1271,
+      "extension": ".md",
+      "role": [
+        "permission-safety"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "tools": 12,
+        "model": 1,
+        "prompt": 1,
+        "artifact-event": 1,
+        "permission-safety": 2,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-19-add-skill-cli-auto-approval/specs/command-generation/spec.md",
+      "size": 2288,
+      "extension": ".md",
+      "role": [
+        "permission-safety"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "tools": 13,
+        "model": 4,
+        "prompt": 1,
+        "artifact-event": 1,
+        "permission-safety": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-19-add-skill-cli-auto-approval/tasks.md",
+      "size": 1050,
+      "extension": ".md",
+      "role": [
+        "permission-safety"
+      ],
+      "term_hits": {
+        "tools": 13,
+        "model": 9,
+        "prompt": 1,
+        "artifact-event": 2,
+        "permission-safety": 2,
+        "eval-observability": 1
+      }
+    },
+    {
+      "path": "src/core/change-status-policy.ts",
+      "size": 4506,
+      "extension": ".ts",
+      "role": [
+        "permission-safety"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "tools": 8,
+        "state-context": 9,
+        "artifact-event": 21,
+        "permission-safety": 2,
+        "instruction-memory": 2
+      }
+    },
+    {
+      "path": "test/commands/validate.name-guard.security.test.ts",
+      "size": 3411,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "permission-safety"
+      ],
+      "term_hits": {
+        "permission-safety": 8
+      }
+    },
+    {
+      "path": "test/core/change-status-policy.test.ts",
+      "size": 5701,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "permission-safety"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "state-context": 4,
+        "artifact-event": 39,
+        "permission-safety": 5,
+        "instruction-memory": 9
+      }
+    },
+    {
+      "path": "test/core/commands/spec-command.security.test.ts",
+      "size": 4119,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "permission-safety"
+      ],
+      "term_hits": {}
+    },
+    {
+      "path": "test/core/completion-tip.atomic-write.security.test.ts",
+      "size": 2378,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "permission-safety"
+      ],
+      "term_hits": {
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "test/core/shared/generated-by-scan.security.test.ts",
+      "size": 2959,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "permission-safety"
+      ],
+      "term_hits": {
+        "tools": 1,
+        "model": 11
+      }
+    },
+    {
+      "path": "test/core/specs-apply.comment-masking.security.test.ts",
+      "size": 2383,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "permission-safety"
+      ],
+      "term_hits": {
+        "tools": 1
+      }
+    },
+    {
+      "path": "test/core/specs-apply.security.test.ts",
+      "size": 6256,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "permission-safety"
+      ],
+      "term_hits": {}
+    },
+    {
+      "path": "test/core/specs-apply.symlink-escape.security.test.ts",
+      "size": 3453,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "permission-safety"
+      ],
+      "term_hits": {
+        "harness": 1
+      }
+    },
+    {
+      "path": "test/core/templates/apply-defer-guardrail.test.ts",
+      "size": 1547,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "prompts",
+        "permission-safety"
+      ],
+      "term_hits": {
+        "agent": 5,
+        "prompt": 5,
+        "instruction-memory": 11
+      }
+    },
+    {
+      "path": "test/core/templates/project-root-guard.test.ts",
+      "size": 9389,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "prompts",
+        "permission-safety"
+      ],
+      "term_hits": {
+        "harness": 2,
+        "agent": 11,
+        "model": 3,
+        "prompt": 16,
+        "memory-rag": 8,
+        "artifact-event": 1,
+        "instruction-memory": 5
+      }
+    },
+    {
+      "path": "test/core/templates/skillssh-generator-guards.test.ts",
+      "size": 3398,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "prompts",
+        "permission-safety"
+      ],
+      "term_hits": {
+        "model": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-02-17-multi-provider-skill-generation/.openspec.yaml",
+      "size": 40,
+      "extension": ".yaml",
+      "role": [
+        "model-provider"
+      ],
+      "term_hits": {}
+    },
+    {
+      "path": "openspec/changes/archive/2026-02-17-multi-provider-skill-generation/design.md",
+      "size": 6431,
+      "extension": ".md",
+      "role": [
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 4,
+        "tools": 48,
+        "model": 11,
+        "state-context": 1,
+        "artifact-event": 2,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-02-17-multi-provider-skill-generation/proposal.md",
+      "size": 2011,
+      "extension": ".md",
+      "role": [
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 3,
+        "tools": 19,
+        "model": 2,
+        "artifact-event": 6,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-02-17-multi-provider-skill-generation/specs/command-generation/spec.md",
+      "size": 3765,
+      "extension": ".md",
+      "role": [
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "tools": 22,
+        "model": 10,
+        "instruction-memory": 2
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2026-02-17-multi-provider-skill-generation/tasks.md",
+      "size": 2823,
+      "extension": ".md",
+      "role": [
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "tools": 25,
+        "model": 10,
+        "memory-rag": 3,
+        "artifact-event": 2
+      }
+    },
+    {
+      "path": "src/core/command-generation/adapters/claude.ts",
+      "size": 1032,
+      "extension": ".ts",
+      "role": [
+        "model-provider"
+      ],
+      "term_hits": {
+        "tools": 13,
+        "model": 7
+      }
+    },
+    {
+      "path": "src/core/completions/completion-provider.ts",
+      "size": 4268,
+      "extension": ".ts",
+      "role": [
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "artifact-event": 2
+      }
+    },
+    {
+      "path": "test/core/completions/completion-provider.test.ts",
+      "size": 11039,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "model-provider"
+      ],
+      "term_hits": {}
+    },
+    {
+      "path": "test/fixtures/released-output/v0.23.0-CLAUDE.md",
+      "size": 660,
+      "extension": ".md",
+      "role": [
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "instruction-memory": 3
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v0.23.0-claude-command-apply.md",
+      "size": 1288,
+      "extension": ".md",
+      "role": [
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "state-context": 2
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v0.23.0-claude-command-archive.md",
+      "size": 2023,
+      "extension": ".md",
+      "role": [
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "tools": 1,
+        "prompt": 2
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v0.23.0-claude-command-proposal.md",
+      "size": 2535,
+      "extension": ".md",
+      "role": [
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "tools": 1,
+        "artifact-event": 1,
+        "permission-safety": 1
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v1.0.0-claude-command-opsx-explore.md",
+      "size": 6650,
+      "extension": ".md",
+      "role": [
+        "model-provider"
+      ],
+      "term_hits": {
+        "agent": 5,
+        "tools": 1,
+        "state-context": 10,
+        "memory-rag": 1,
+        "artifact-event": 7
+      }
+    },
+    {
+      "path": "website/app/llms-full.txt/route.ts",
+      "size": 257,
+      "extension": ".ts",
+      "role": [
+        "model-provider",
+        "ui"
+      ],
+      "term_hits": {
+        "model": 2,
+        "eval-observability": 1
+      }
+    },
+    {
+      "path": "website/app/llms.mdx/docs/[[...slug]]/route.ts",
+      "size": 654,
+      "extension": ".ts",
+      "role": [
+        "docs",
+        "model-provider",
+        "ui"
+      ],
+      "term_hits": {
+        "model": 4,
+        "state-context": 1,
+        "eval-observability": 1
+      }
+    },
+    {
+      "path": "website/app/llms.txt/route.ts",
+      "size": 202,
+      "extension": ".ts",
+      "role": [
+        "model-provider",
+        "ui"
+      ],
+      "term_hits": {
+        "model": 2,
+        "memory-rag": 1,
+        "eval-observability": 1
+      }
+    },
+    {
+      "path": "website/components/provider.tsx",
+      "size": 305,
+      "extension": ".tsx",
+      "role": [
+        "model-provider",
+        "ui"
+      ],
+      "term_hits": {}
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/bug_report.yml",
+      "size": 3212,
+      "extension": ".yml",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 9,
+        "tools": 2,
+        "model": 3,
+        "state-context": 5,
+        "artifact-event": 4,
+        "permission-safety": 2,
+        "eval-observability": 4,
+        "instruction-memory": 2
+      }
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/config.yml",
+      "size": 902,
+      "extension": ".yml",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "permission-safety": 2
+      }
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/docs.yml",
+      "size": 844,
+      "extension": ".yml",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "prompt": 1
+      }
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/feature_request.yml",
+      "size": 2236,
+      "extension": ".yml",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 8,
+        "model": 2
+      }
+    },
+    {
+      "path": ".github/PULL_REQUEST_TEMPLATE.md",
+      "size": 615,
+      "extension": ".md",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "model": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-10-14-add-github-copilot-prompts/proposal.md",
+      "size": 3286,
+      "extension": ".md",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "tools": 5,
+        "model": 3,
+        "prompt": 22,
+        "memory-rag": 2,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-10-14-add-github-copilot-prompts/specs/cli-init/spec.md",
+      "size": 3683,
+      "extension": ".md",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 15,
+        "tools": 10,
+        "model": 7,
+        "prompt": 26,
+        "instruction-memory": 6
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-10-14-add-github-copilot-prompts/specs/cli-update/spec.md",
+      "size": 2908,
+      "extension": ".md",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 8,
+        "tools": 3,
+        "model": 2,
+        "prompt": 19,
+        "instruction-memory": 6
+      }
+    },
+    {
+      "path": "openspec/changes/archive/2025-10-14-add-github-copilot-prompts/tasks.md",
+      "size": 1935,
+      "extension": ".md",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "tools": 5,
+        "model": 3,
+        "prompt": 15
+      }
+    },
+    {
+      "path": "schemas/spec-driven/templates/design.md",
+      "size": 417,
+      "extension": ".md",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "state-context": 3
+      }
+    },
+    {
+      "path": "schemas/spec-driven/templates/proposal.md",
+      "size": 1468,
+      "extension": ".md",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "tools": 1
+      }
+    },
+    {
+      "path": "schemas/spec-driven/templates/spec.md",
+      "size": 374,
+      "extension": ".md",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {}
+    },
+    {
+      "path": "schemas/spec-driven/templates/tasks.md",
+      "size": 218,
+      "extension": ".md",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {}
+    },
+    {
+      "path": "src/commands/workset-prompts.ts",
+      "size": 5417,
+      "extension": ".ts",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "tools": 20,
+        "prompt": 14,
+        "state-context": 2
+      }
+    },
+    {
+      "path": "src/core/completions/templates/bash-templates.ts",
+      "size": 875,
+      "extension": ".ts",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "prompt": 1
+      }
+    },
+    {
+      "path": "src/core/completions/templates/fish-templates.ts",
+      "size": 3745,
+      "extension": ".ts",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "prompt": 1,
+        "memory-rag": 4
+      }
+    },
+    {
+      "path": "src/core/completions/templates/powershell-templates.ts",
+      "size": 772,
+      "extension": ".ts",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "prompt": 1
+      }
+    },
+    {
+      "path": "src/core/completions/templates/zsh-templates.ts",
+      "size": 1265,
+      "extension": ".ts",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "prompt": 1
+      }
+    },
+    {
+      "path": "src/core/config-prompts.ts",
+      "size": 2299,
+      "extension": ".ts",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "state-context": 7,
+        "artifact-event": 5
+      }
+    },
+    {
+      "path": "src/core/templates/skill-templates.ts",
+      "size": 1518,
+      "extension": ".ts",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 15,
+        "prompt": 29,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "src/core/templates/types.ts",
+      "size": 378,
+      "extension": ".ts",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "prompt": 3,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "src/prompts/searchable-multi-select.ts",
+      "size": 8486,
+      "extension": ".ts",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "prompt": 6,
+        "state-context": 8,
+        "memory-rag": 8,
+        "artifact-event": 11,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "test/core/config-prompts.test.ts",
+      "size": 1009,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 3,
+        "prompt": 2,
+        "state-context": 2,
+        "artifact-event": 2
+      }
+    },
+    {
+      "path": "test/core/templates/archive-existing-target.test.ts",
+      "size": 2517,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "prompts"
+      ],
+      "term_hits": {
+        "prompt": 6,
+        "state-context": 1,
+        "memory-rag": 11,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "test/core/templates/archive-task-progress.test.ts",
+      "size": 6011,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 8,
+        "model": 6,
+        "prompt": 9,
+        "memory-rag": 1,
+        "artifact-event": 3
+      }
+    },
+    {
+      "path": "test/core/templates/bulk-archive-existing-target.test.ts",
+      "size": 6217,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "prompt": 7,
+        "memory-rag": 12,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "test/core/templates/explore.test.ts",
+      "size": 27631,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "prompts"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 16,
+        "tools": 8,
+        "model": 3,
+        "prompt": 11,
+        "state-context": 12,
+        "memory-rag": 24,
+        "artifact-event": 36,
+        "permission-safety": 5,
+        "eval-observability": 8,
+        "instruction-memory": 23
+      }
+    },
+    {
+      "path": "test/core/templates/glob-path-bounding.test.ts",
+      "size": 9686,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "prompts"
+      ],
+      "term_hits": {
+        "harness": 2,
+        "agent": 5,
+        "prompt": 33,
+        "state-context": 3,
+        "memory-rag": 10,
+        "artifact-event": 9,
+        "eval-observability": 1,
+        "instruction-memory": 8
+      }
+    },
+    {
+      "path": "test/core/templates/list-json-contract.test.ts",
+      "size": 5419,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 16,
+        "prompt": 36,
+        "state-context": 1,
+        "memory-rag": 12,
+        "instruction-memory": 9
+      }
+    },
+    {
+      "path": "test/core/templates/main-spec-paths.test.ts",
+      "size": 5009,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 5,
+        "prompt": 1,
+        "artifact-event": 10,
+        "instruction-memory": 21
+      }
+    },
+    {
+      "path": "test/core/templates/one-text-per-skill.test.ts",
+      "size": 2131,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 18,
+        "model": 5,
+        "prompt": 10,
+        "instruction-memory": 5
+      }
+    },
+    {
+      "path": "test/core/templates/parity-hash-shared.test.ts",
+      "size": 6823,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "model": 2,
+        "prompt": 29,
+        "eval-observability": 1
+      }
+    },
+    {
+      "path": "test/core/templates/propose.test.ts",
+      "size": 31938,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "prompts"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 36,
+        "tools": 13,
+        "model": 21,
+        "prompt": 17,
+        "state-context": 42,
+        "memory-rag": 28,
+        "artifact-event": 59,
+        "instruction-memory": 42
+      }
+    },
+    {
+      "path": "test/core/templates/requirement-length-guidance.test.ts",
+      "size": 1816,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "prompts",
+        "ui"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "state-context": 2,
+        "artifact-event": 2,
+        "instruction-memory": 10
+      }
+    },
+    {
+      "path": "test/core/templates/schema-docs-instruction-parity.test.ts",
+      "size": 2535,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 3,
+        "model": 1,
+        "state-context": 1,
+        "memory-rag": 3,
+        "artifact-event": 6,
+        "instruction-memory": 15
+      }
+    },
+    {
+      "path": "test/core/templates/skill-templates-parity.test.ts",
+      "size": 63814,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "prompts"
+      ],
+      "term_hits": {
+        "harness": 7,
+        "agent": 35,
+        "tools": 7,
+        "model": 49,
+        "prompt": 231,
+        "state-context": 18,
+        "memory-rag": 22,
+        "artifact-event": 44,
+        "permission-safety": 3,
+        "eval-observability": 4,
+        "instruction-memory": 44
+      }
+    },
+    {
+      "path": "test/core/templates/skillssh-parity.test.ts",
+      "size": 3112,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "model": 6,
+        "prompt": 9
+      }
+    },
+    {
+      "path": "test/core/templates/spec-inventory.test.ts",
+      "size": 7189,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 4,
+        "tools": 1,
+        "model": 3,
+        "prompt": 13,
+        "state-context": 4,
+        "memory-rag": 5,
+        "artifact-event": 10,
+        "instruction-memory": 18
+      }
+    },
+    {
+      "path": "test/core/templates/update-change.test.ts",
+      "size": 19441,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 16,
+        "model": 2,
+        "prompt": 11,
+        "state-context": 5,
+        "memory-rag": 12,
+        "artifact-event": 30,
+        "instruction-memory": 10
+      }
+    },
+    {
+      "path": "test/core/templates/verify-change-delta-operations.test.ts",
+      "size": 15264,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "model": 1,
+        "prompt": 6,
+        "state-context": 8,
+        "memory-rag": 24,
+        "artifact-event": 2,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "test/core/templates/verify-change.test.ts",
+      "size": 7057,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "prompt": 7,
+        "state-context": 6,
+        "memory-rag": 2,
+        "artifact-event": 14,
+        "instruction-memory": 3
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v1.0.0-codex-prompt-opsx-new.md",
+      "size": 2669,
+      "extension": ".md",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 8,
+        "tools": 1,
+        "prompt": 4,
+        "state-context": 1,
+        "artifact-event": 15,
+        "instruction-memory": 3
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v1.10.0-amazonq/prompts/opsx-apply.md",
+      "size": 7918,
+      "extension": ".md",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "harness": 2,
+        "agent": 5,
+        "tools": 5,
+        "model": 1,
+        "prompt": 3,
+        "state-context": 26,
+        "artifact-event": 13,
+        "instruction-memory": 12
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v1.10.0-amazonq/prompts/opsx-explore.md",
+      "size": 12131,
+      "extension": ".md",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "harness": 2,
+        "agent": 5,
+        "tools": 1,
+        "prompt": 1,
+        "state-context": 17,
+        "memory-rag": 1,
+        "artifact-event": 29,
+        "eval-observability": 2,
+        "instruction-memory": 11
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v1.6.0-codex-prompts/opsx-apply.md",
+      "size": 5207,
+      "extension": ".md",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 2,
+        "tools": 6,
+        "model": 1,
+        "prompt": 1,
+        "state-context": 16,
+        "artifact-event": 8,
+        "instruction-memory": 7
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v1.6.0-codex-prompts/opsx-archive.md",
+      "size": 5836,
+      "extension": ".md",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "harness": 2,
+        "agent": 6,
+        "tools": 5,
+        "model": 1,
+        "prompt": 10,
+        "state-context": 5,
+        "artifact-event": 13,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v1.6.0-codex-prompts/opsx-bulk-archive.md",
+      "size": 8172,
+      "extension": ".md",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 7,
+        "tools": 3,
+        "prompt": 3,
+        "state-context": 3,
+        "artifact-event": 8,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v1.6.0-codex-prompts/opsx-continue.md",
+      "size": 5767,
+      "extension": ".md",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "tools": 2,
+        "prompt": 5,
+        "state-context": 14,
+        "artifact-event": 32,
+        "instruction-memory": 9
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v1.6.0-codex-prompts/opsx-explore.md",
+      "size": 7358,
+      "extension": ".md",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 3,
+        "tools": 1,
+        "state-context": 12,
+        "memory-rag": 1,
+        "artifact-event": 10,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v1.6.0-codex-prompts/opsx-ff.md",
+      "size": 4987,
+      "extension": ".md",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "tools": 4,
+        "model": 2,
+        "prompt": 4,
+        "state-context": 13,
+        "artifact-event": 36,
+        "instruction-memory": 7
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v1.6.0-codex-prompts/opsx-new.md",
+      "size": 3204,
+      "extension": ".md",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 8,
+        "tools": 1,
+        "prompt": 4,
+        "state-context": 2,
+        "artifact-event": 15,
+        "instruction-memory": 4
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v1.6.0-codex-prompts/opsx-onboard.md",
+      "size": 14856,
+      "extension": ".md",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 7,
+        "tools": 1,
+        "model": 3,
+        "state-context": 11,
+        "artifact-event": 13,
+        "permission-safety": 2,
+        "instruction-memory": 7
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v1.6.0-codex-prompts/opsx-propose.md",
+      "size": 5155,
+      "extension": ".md",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "tools": 4,
+        "model": 2,
+        "prompt": 4,
+        "state-context": 13,
+        "artifact-event": 37,
+        "instruction-memory": 7
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v1.6.0-codex-prompts/opsx-sync.md",
+      "size": 4983,
+      "extension": ".md",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "tools": 1,
+        "prompt": 2,
+        "state-context": 3,
+        "artifact-event": 1,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v1.6.0-codex-prompts/opsx-update.md",
+      "size": 5534,
+      "extension": ".md",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "tools": 2,
+        "prompt": 3,
+        "state-context": 5,
+        "artifact-event": 32,
+        "instruction-memory": 2
+      }
+    },
+    {
+      "path": "test/fixtures/released-output/v1.6.0-codex-prompts/opsx-verify.md",
+      "size": 7090,
+      "extension": ".md",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "tools": 5,
+        "model": 1,
+        "prompt": 2,
+        "state-context": 10,
+        "memory-rag": 5,
+        "artifact-event": 9,
+        "instruction-memory": 2
+      }
+    },
+    {
+      "path": "test/helpers/released-codex-prompt.ts",
+      "size": 558,
+      "extension": ".ts",
+      "role": [
+        "prompts"
+      ],
+      "term_hits": {
+        "prompt": 5
+      }
+    },
+    {
+      "path": "test/prompts/searchable-multi-select.test.ts",
+      "size": 16661,
+      "extension": ".ts",
+      "role": [
+        "test",
+        "prompts"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 7,
+        "tools": 23,
+        "model": 13,
+        "prompt": 4,
+        "state-context": 22,
+        "memory-rag": 6,
+        "artifact-event": 9
+      }
+    },
+    {
+      "path": ".actrc",
+      "size": 48,
+      "extension": "[none]",
+      "role": [
+        "other"
+      ],
+      "term_hits": {}
+    },
+    {
+      "path": ".changeset/README.md",
+      "size": 2774,
+      "extension": ".md",
+      "role": [
+        "docs"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "tools": 1,
+        "prompt": 2
+      }
+    },
+    {
+      "path": ".coderabbit.yaml",
+      "size": 281,
+      "extension": ".yaml",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": ".devcontainer/README.md",
+      "size": 2569,
+      "extension": ".md",
+      "role": [
+        "docs"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "tools": 4,
+        "memory-rag": 1,
+        "permission-safety": 1,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": ".devcontainer/devcontainer.json",
+      "size": 2033,
+      "extension": ".json",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "tools": 5,
+        "prompt": 1,
+        "instruction-memory": 2
+      }
+    },
+    {
+      "path": ".gitattributes",
+      "size": 652,
+      "extension": "[none]",
+      "role": [
+        "other"
+      ],
+      "term_hits": {
+        "model": 5,
+        "prompt": 1
+      }
+    },
+    {
+      "path": ".github/CODEOWNERS",
+      "size": 135,
+      "extension": "[none]",
+      "role": [
+        "other"
+      ],
+      "term_hits": {}
+    },
+    {
+      "path": ".github/dependabot.yml",
+      "size": 3324,
+      "extension": ".yml",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "tools": 8,
+        "model": 1
+      }
+    },
+    {
+      "path": ".gitignore",
+      "size": 2466,
+      "extension": "[none]",
+      "role": [
+        "other"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "tools": 2,
+        "model": 6,
+        "state-context": 2,
+        "memory-rag": 5
+      }
+    },
+    {
+      "path": "CHANGELOG.md",
+      "size": 228362,
+      "extension": ".md",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "harness": 18,
+        "agent": 250,
+        "tools": 178,
+        "model": 102,
+        "prompt": 59,
+        "state-context": 39,
+        "memory-rag": 9,
+        "artifact-event": 127,
+        "permission-safety": 6,
+        "eval-observability": 20,
+        "instruction-memory": 90
+      }
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "size": 4270,
+      "extension": ".md",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "agent": 10,
+        "tools": 3,
+        "model": 5,
+        "state-context": 2,
+        "memory-rag": 1,
+        "artifact-event": 1,
+        "permission-safety": 2,
+        "eval-observability": 1
+      }
+    },
+    {
+      "path": "LICENSE",
+      "size": 1072,
+      "extension": "[none]",
+      "role": [
+        "other"
+      ],
+      "term_hits": {
+        "tools": 1,
+        "artifact-event": 1,
+        "permission-safety": 2
+      }
+    },
+    {
+      "path": "README.md",
+      "size": 11088,
+      "extension": ".md",
+      "role": [
+        "docs"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 9,
+        "tools": 30,
+        "model": 4,
+        "prompt": 2,
+        "state-context": 8,
+        "memory-rag": 1,
+        "artifact-event": 1,
+        "eval-observability": 3,
+        "instruction-memory": 5
+      }
+    },
+    {
+      "path": "README_OLD.md",
+      "size": 19872,
+      "extension": ".md",
+      "role": [
+        "docs"
+      ],
+      "term_hits": {
+        "agent": 32,
+        "tools": 35,
+        "model": 13,
+        "prompt": 11,
+        "state-context": 7,
+        "artifact-event": 6,
+        "permission-safety": 4,
+        "eval-observability": 3,
+        "instruction-memory": 22
+      }
+    },
+    {
+      "path": "bin/openspec.js",
+      "size": 79,
+      "extension": ".js",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "memory-rag": 1
+      }
+    },
+    {
+      "path": "build.js",
+      "size": 836,
+      "extension": ".js",
+      "role": [
+        "ui"
+      ],
+      "term_hits": {}
+    },
+    {
+      "path": "docs-lab/Notes.md",
+      "size": 4160,
+      "extension": ".md",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "agent": 6,
+        "tools": 2,
+        "model": 1,
+        "prompt": 3,
+        "state-context": 4,
+        "artifact-event": 2,
+        "eval-observability": 1,
+        "instruction-memory": 3
+      }
+    },
+    {
+      "path": "docs-lab/README.md",
+      "size": 21056,
+      "extension": ".md",
+      "role": [
+        "docs"
+      ],
+      "term_hits": {
+        "agent": 35,
+        "tools": 8,
+        "model": 3,
+        "prompt": 7,
+        "state-context": 8,
+        "memory-rag": 11,
+        "artifact-event": 10,
+        "eval-observability": 3,
+        "instruction-memory": 10
+      }
+    },
+    {
+      "path": "docs-lab/customize/overview.md",
+      "size": 1962,
+      "extension": ".md",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "agent": 6,
+        "prompt": 1,
+        "state-context": 2,
+        "artifact-event": 4,
+        "instruction-memory": 4
+      }
+    },
+    {
+      "path": "docs-lab/customize/profiles.md",
+      "size": 3479,
+      "extension": ".md",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "agent": 12,
+        "tools": 1,
+        "model": 1,
+        "artifact-event": 7,
+        "instruction-memory": 12
+      }
+    },
+    {
+      "path": "docs-lab/customize/project-config.md",
+      "size": 4612,
+      "extension": ".md",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "agent": 21,
+        "prompt": 5,
+        "state-context": 12,
+        "memory-rag": 1,
+        "artifact-event": 21,
+        "instruction-memory": 10
+      }
+    },
+    {
+      "path": "docs-lab/customize/schemas.md",
+      "size": 7386,
+      "extension": ".md",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "agent": 8,
+        "model": 4,
+        "prompt": 12,
+        "memory-rag": 1,
+        "artifact-event": 14,
+        "instruction-memory": 4
+      }
+    },
+    {
+      "path": "docs-lab/guides/apply.md",
+      "size": 270,
+      "extension": ".md",
+      "role": [
+        "ui"
+      ],
+      "term_hits": {
+        "state-context": 2
+      }
+    },
+    {
+      "path": "docs-lab/guides/change-course.md",
+      "size": 240,
+      "extension": ".md",
+      "role": [
+        "ui"
+      ],
+      "term_hits": {
+        "artifact-event": 1
+      }
+    },
+    {
+      "path": "docs-lab/guides/concepts.md",
+      "size": 1293,
+      "extension": ".md",
+      "role": [
+        "ui"
+      ],
+      "term_hits": {
+        "memory-rag": 1,
+        "artifact-event": 2,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "docs-lab/guides/examples.md",
+      "size": 708,
+      "extension": ".md",
+      "role": [
+        "ui"
+      ],
+      "term_hits": {
+        "memory-rag": 1
+      }
+    },
+    {
+      "path": "docs-lab/guides/existing-codebases.md",
+      "size": 747,
+      "extension": ".md",
+      "role": [
+        "ui"
+      ],
+      "term_hits": {}
+    },
+    {
+      "path": "docs-lab/guides/explore.md",
+      "size": 276,
+      "extension": ".md",
+      "role": [
+        "ui"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "state-context": 1
+      }
+    },
+    {
+      "path": "docs-lab/guides/review-the-plan.md",
+      "size": 1573,
+      "extension": ".md",
+      "role": [
+        "ui"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "artifact-event": 1
+      }
+    },
+    {
+      "path": "docs-lab/guides/teams.md",
+      "size": 1305,
+      "extension": ".md",
+      "role": [
+        "ui"
+      ],
+      "term_hits": {
+        "agent": 1
+      }
+    },
+    {
+      "path": "docs-lab/help/faq.md",
+      "size": 1364,
+      "extension": ".md",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "agent": 3,
+        "tools": 9
+      }
+    },
+    {
+      "path": "docs-lab/help/legacy/migration.md",
+      "size": 1012,
+      "extension": ".md",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "agent": 3,
+        "model": 2
+      }
+    },
+    {
+      "path": "docs-lab/help/troubleshooting.md",
+      "size": 617,
+      "extension": ".md",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "agent": 2
+      }
+    },
+    {
+      "path": "docs-lab/help/upgrade-to-2-1.md",
+      "size": 2726,
+      "extension": ".md",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "agent": 4,
+        "tools": 8,
+        "model": 2
+      }
+    },
+    {
+      "path": "docs-lab/help/upgrade-to-2.md",
+      "size": 7257,
+      "extension": ".md",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 8,
+        "tools": 30,
+        "model": 7,
+        "prompt": 4,
+        "state-context": 1,
+        "instruction-memory": 6
+      }
+    },
+    {
+      "path": "docs-lab/message-map.md",
+      "size": 10501,
+      "extension": ".md",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "agent": 5,
+        "tools": 15,
+        "prompt": 3,
+        "state-context": 4,
+        "memory-rag": 6,
+        "artifact-event": 7,
+        "eval-observability": 1,
+        "instruction-memory": 6
+      }
+    },
+    {
+      "path": "docs-lab/multi-repo/stores.md",
+      "size": 14843,
+      "extension": ".md",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "agent": 10,
+        "tools": 3,
+        "model": 1,
+        "prompt": 2,
+        "state-context": 2,
+        "memory-rag": 1,
+        "artifact-event": 11,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "docs-lab/multi-repo/worksets.md",
+      "size": 3099,
+      "extension": ".md",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "agent": 7,
+        "tools": 8,
+        "model": 3,
+        "state-context": 3,
+        "artifact-event": 2
+      }
+    },
+    {
+      "path": "docs-lab/reference/architecture/design-decisions.md",
+      "size": 490,
+      "extension": ".md",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "tools": 2
+      }
+    },
+    {
+      "path": "docs-lab/reference/architecture/index.md",
+      "size": 750,
+      "extension": ".md",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "agent": 3,
+        "artifact-event": 1
+      }
+    },
+    {
+      "path": "docs-lab/reference/cli.md",
+      "size": 89572,
+      "extension": ".md",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 40,
+        "tools": 98,
+        "model": 27,
+        "prompt": 45,
+        "state-context": 64,
+        "memory-rag": 1,
+        "artifact-event": 52,
+        "permission-safety": 1,
+        "eval-observability": 5,
+        "instruction-memory": 55
+      }
+    },
+    {
+      "path": "docs-lab/reference/configuration/change-metadata.md",
+      "size": 4172,
+      "extension": ".md",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "tools": 2,
+        "model": 1,
+        "artifact-event": 2,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "docs-lab/reference/configuration/config-json.md",
+      "size": 5016,
+      "extension": ".md",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "agent": 7,
+        "tools": 14,
+        "model": 3,
+        "state-context": 1,
+        "artifact-event": 1,
+        "eval-observability": 7,
+        "instruction-memory": 6
+      }
+    },
+    {
+      "path": "docs-lab/reference/configuration/config-yaml.md",
+      "size": 4068,
+      "extension": ".md",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "agent": 2,
+        "state-context": 5,
+        "memory-rag": 2,
+        "artifact-event": 10,
+        "instruction-memory": 3
+      }
+    },
+    {
+      "path": "docs-lab/reference/configuration/environment-variables.md",
+      "size": 843,
+      "extension": ".md",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "tools": 2,
+        "model": 1,
+        "permission-safety": 1,
+        "eval-observability": 3
+      }
+    },
+    {
+      "path": "docs-lab/reference/configuration/index.md",
+      "size": 849,
+      "extension": ".md",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "state-context": 1,
+        "eval-observability": 1
+      }
+    },
+    {
+      "path": "docs-lab/reference/configuration/stores.md",
+      "size": 934,
+      "extension": ".md",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "agent": 1
+      }
+    },
+    {
+      "path": "docs-lab/reference/glossary.md",
+      "size": 5363,
+      "extension": ".md",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "agent": 10,
+        "tools": 9,
+        "model": 1,
+        "prompt": 1,
+        "memory-rag": 7,
+        "artifact-event": 12,
+        "instruction-memory": 5
+      }
+    },
+    {
+      "path": "docs-lab/reference/schemas/index.md",
+      "size": 879,
+      "extension": ".md",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "state-context": 1,
+        "memory-rag": 1,
+        "artifact-event": 4
+      }
+    },
+    {
+      "path": "docs-lab/reference/schemas/schema-yaml.md",
+      "size": 9732,
+      "extension": ".md",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "agent": 8,
+        "model": 13,
+        "prompt": 12,
+        "state-context": 2,
+        "memory-rag": 1,
+        "artifact-event": 27,
+        "instruction-memory": 9
+      }
+    },
+    {
+      "path": "docs-lab/reference/schemas/spec-driven/index.md",
+      "size": 22751,
+      "extension": ".md",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "agent": 18,
+        "tools": 2,
+        "model": 5,
+        "prompt": 17,
+        "state-context": 13,
+        "artifact-event": 14,
+        "instruction-memory": 18
+      }
+    },
+    {
+      "path": "docs-lab/sources.md",
+      "size": 3172,
+      "extension": ".md",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "agent": 3,
+        "tools": 4,
+        "model": 3,
+        "state-context": 1,
+        "memory-rag": 5,
+        "instruction-memory": 1
+      }
+    },
+    {
+      "path": "docs-lab/start/installation.md",
+      "size": 11341,
+      "extension": ".md",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 9,
+        "tools": 11,
+        "model": 7,
+        "prompt": 5,
+        "state-context": 1,
+        "permission-safety": 2,
+        "eval-observability": 1,
+        "instruction-memory": 4
+      }
+    },
+    {
+      "path": "docs-lab/start/overview.md",
+      "size": 883,
+      "extension": ".md",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "agent": 1,
+        "state-context": 1,
+        "artifact-event": 1
+      }
+    },
+    {
+      "path": "docs-lab/start/quickstart.md",
+      "size": 8690,
+      "extension": ".md",
+      "role": [
+        "ui"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 13,
+        "tools": 7,
+        "prompt": 2,
+        "state-context": 10,
+        "memory-rag": 1,
+        "artifact-event": 3,
+        "instruction-memory": 2
+      }
+    },
+    {
+      "path": "docs-lab/start/setup.md",
+      "size": 8682,
+      "extension": ".md",
+      "role": [
+        "source"
+      ],
+      "term_hits": {
+        "harness": 1,
+        "agent": 22,
+        "tools": 41,
+        "model": 18,
+        "state-context": 3,
+        "artifact-event": 4,
+        "instruction-memory": 11
+      }
+    }
+  ],
+  "limits": {
+    "max_files": 20000,
+    "max_text_bytes_per_file": 512000
+  }
+}
