@@ -242,7 +242,10 @@ jobs:
           # Export in this same block: writing to $GITHUB_PATH only affects
           # SUBSEQUENT steps, never the running one.
           export PATH="$GITHUB_WORKSPACE/node_modules/.bin:$PATH"
-          node openspec/tdd-e2e/e2e-lint.mjs --gate --json
+          # --policy-ref pins command discovery and policy (enforce/allowlist/
+          # policyVersion) to the trusted origin/main version (contract 1):
+          # the candidate checkout only supplies code under test and tests.
+          node openspec/tdd-e2e/e2e-lint.mjs --gate --policy-ref origin/main --json
 
   test_pr_required:
     name: Test
