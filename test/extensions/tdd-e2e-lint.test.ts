@@ -310,6 +310,18 @@ it('元数据编辑规则：修改既有 change 的 schema/豁免字段须授权
   expect(r2.json.changes[0].status).toBe('PASS');
 });
 
+it('元数据编辑规则：翻转既有 change 的 skip_specs 须授权记录，未授权 = FAIL（skip_specs 入受保护字段）', async () => {
+  // skip_specs 翻转可把零场景 FAIL 变 NOT_APPLICABLE（脱管）——与 schema/豁免字段同级受保护
+  const proj = makeProject({ config: { command: GREEN_CMD } });
+  addChange(proj, 'c1', { meta: 'schema: tdd-driven\nskip_specs: false\n', spec: SPEC_ZERO_SCENARIO, ledger: null });
+  commitAll(proj, 'add c1');
+  const base = headSha(proj);
+  write(proj, 'openspec/changes/c1/.openspec.yaml', 'schema: tdd-driven\nskip_specs: true\n'); // 翻转（未授权）
+  const r = runLint(['--gate', '--change', 'c1', '--project', proj, '--base', base]);
+  expect(r.code).toBe(1);
+  expect(r.json.changes[0].reason).toContain('unauthorized-metadata-edit');
+});
+
 // ---------- 真值表：项目级 e2e 重跑决策 ----------
 
 it('docs-only：diff⊂文档路径 → 项目级记 SKIP-EXEC（非 PASS），无在范围 change → NOT_APPLICABLE', async () => {

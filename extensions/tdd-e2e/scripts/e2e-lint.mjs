@@ -761,7 +761,7 @@ function reconcileLedger(changeDir, skipSpecs) {
 
 // ---------- 逐 change 判定 ----------
 
-const PROTECTED_META_KEYS = ['schema', 'x-tdd-e2e.skip', 'x-tdd-e2e.skip_reason'];
+const PROTECTED_META_KEYS = ['schema', 'skip_specs', 'x-tdd-e2e.skip', 'x-tdd-e2e.skip_reason'];
 
 /**
  * ①②③ 前段判定：身份决策 → 元数据有效性 / 编辑授权 → 有效 schema / 执法范围 → EXEMPT。
