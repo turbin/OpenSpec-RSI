@@ -48,6 +48,7 @@ function makeProject(opts: ProjectOpts = {}): string {
   tempDirs.push(root);
   write(root, 'src/a.ts', 'export const a = 1;\n');
   write(root, 'README.md', '# demo\n');
+  write(root, 'openspec/schemas/tdd-driven/schema.yaml', 'name: tdd-driven\n'); // 可发现 schema（等价 install 落位）
   if (opts.config !== undefined) {
     write(root, 'tdd-e2e.config.json', typeof opts.config === 'string' ? opts.config : JSON.stringify(opts.config));
   }

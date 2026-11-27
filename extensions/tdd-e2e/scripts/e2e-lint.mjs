@@ -388,6 +388,19 @@ function projectDefaultSchema(projectRoot) {
   return 'spec-driven';
 }
 
+/** 可发现 schema 集合：项目 openspec/schemas/ 目录子目录 ∪ 内置 spec-driven（未知 schema 值 fail-closed）。 */
+function discoverableSchemas(projectRoot) {
+  const names = new Set(['spec-driven']);
+  try {
+    for (const e of readdirSync(path.join(projectRoot, 'openspec', 'schemas'), { withFileTypes: true })) {
+      if (e.isDirectory()) names.add(e.name);
+    }
+  } catch {
+    /* 无项目 schema 目录 → 仅内置 */
+  }
+  return names;
+}
+
 // ---------- 受信授权记录（③ EXEMPT，裁定 4） ----------
 
 /** allowlist 条目 = JSON 对象字符串：{change, snapshot, scope[], approver}。裸 glob/名称只筛候选，不作授权。 */
@@ -868,6 +881,15 @@ function preJudge(c, projectRoot, opts, cfg, diff) {
     out.reason = 'invalid-metadata: schema must be a non-empty string';
     return out;
   }
+  // 未知 schema 值 fail-closed（可发现集合 = 项目 openspec/schemas/ 目录 ∪ 内置 spec-driven）：
+  // 不可发现的 schema 不得按"执法范围外"脱管（元数据值与显式覆盖同罚，独立错误路径）。
+  const knownSchemas = discoverableSchemas(projectRoot);
+  const unknownSchema = (v) => `invalid-metadata: unknown schema "${v}" (discoverable: ${[...knownSchemas].sort().join(', ')})`;
+  if (schemaVal !== undefined && !knownSchemas.has(String(schemaVal).trim())) {
+    out.status = 'FAIL';
+    out.reason = unknownSchema(String(schemaVal).trim());
+    return out;
+  }
   if (schemaVal === undefined && cfg.enforce === 'tdd-driven-only') {
     out.status = 'FAIL';
     out.reason = 'schema-bypass: metadata schema missing under enforce=tdd-driven-only';
@@ -878,6 +900,11 @@ function preJudge(c, projectRoot, opts, cfg, diff) {
   const effective = opts.schema
     ?? (typeof schemaVal === 'string' && schemaVal.trim() !== '' ? schemaVal.trim() : projectDefaultSchema(projectRoot));
   out.effective = effective;
+  if (!knownSchemas.has(effective)) {
+    out.status = 'FAIL';
+    out.reason = unknownSchema(effective);
+    return out;
+  }
 
   if (!(effective === 'tdd-driven' || cfg.enforce === 'all-changes')) {
     out.status = 'NOT_APPLICABLE';

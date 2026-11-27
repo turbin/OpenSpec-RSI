@@ -47,6 +47,7 @@ function makeProject(opts: ProjectOpts = {}): string {
   tempDirs.push(root);
   write(root, 'src/a.ts', 'export const a = 1;\n');
   write(root, 'README.md', '# demo\n');
+  write(root, 'openspec/schemas/tdd-driven/schema.yaml', 'name: tdd-driven\n'); // 可发现 schema（等价 install 落位）
   if (opts.config !== undefined) {
     write(root, 'tdd-e2e.config.json', typeof opts.config === 'string' ? opts.config : JSON.stringify(opts.config));
   }
@@ -227,6 +228,37 @@ it('元数据无效/缺失且 enforce=tdd-driven-only → FAIL（schema 绕行�
   const r4 = runLint(['--gate', '--change', 'c1', '--project', p4, '--base', 'HEAD~1']);
   expect(r4.json.aggregate).toBe('FAIL');
   expect(r4.json.changes[0].reason).toContain('invalid-metadata');
+});
+
+it('未知 schema 值 fail-closed：对照可发现 schema 集合（项目 openspec/schemas/ + 内置 spec-driven）', async () => {
+  // (a) schema: banana（不可发现）→ invalid-metadata FAIL（即使证据全绿，不得按"执法范围外"脱管）
+  const p1 = makeProject({ config: { command: GREEN_CMD } });
+  addChange(p1, 'c1', { meta: 'schema: banana\n' });
+  commitAll(p1, 'add c1');
+  expect(finalize(p1, 'c1').code).toBe(0);
+  const r1 = runLint(['--gate', '--change', 'c1', '--project', p1, '--base', 'HEAD~1']);
+  expect(r1.code).toBe(1);
+  expect(r1.json.changes[0].reason).toContain('invalid-metadata');
+  expect(r1.json.changes[0].reason).toContain('banana');
+
+  // (b) 项目注册的 schema（openspec/schemas/<name>/ 目录）可发现 → 合法（执法范围外 NOT_APPLICABLE）
+  const p2 = makeProject({
+    config: { command: GREEN_CMD },
+    files: { 'openspec/schemas/custom-flow/schema.yaml': 'name: custom-flow\n' },
+  });
+  addChange(p2, 'c1', { meta: 'schema: custom-flow\n', spec: null, ledger: null });
+  commitAll(p2, 'add c1');
+  const r2 = runLint(['--gate', '--change', 'c1', '--project', p2, '--base', 'HEAD~1']);
+  expect(r2.code, `${r2.stdout}\n${r2.stderr}`).toBe(0);
+  expect(r2.json.changes[0].status).toBe('NOT_APPLICABLE');
+
+  // (c) 显式 --schema 未知值同样 FAIL（显式覆盖不是绕行通道）
+  const p3 = makeProject({ config: { command: GREEN_CMD } });
+  addChange(p3, 'c1', { meta: 'schema: spec-driven\n', spec: null, ledger: null });
+  commitAll(p3, 'add c1');
+  const r3 = runLint(['--gate', '--change', 'c1', '--project', p3, '--base', 'HEAD~1', '--schema', 'banana']);
+  expect(r3.code).toBe(1);
+  expect(r3.json.changes[0].reason).toContain('invalid-metadata');
 });
 
 it('enforce 取值非法 → fail-closed invalid-config', async () => {
