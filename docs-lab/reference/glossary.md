@@ -15,6 +15,8 @@ OpenSpec reuses words that mean something else in git, CI, and agent tooling. Ea
 | **Continue** | Create the next planning artifact for an existing change proposal. Skill: `openspec-continue-change`. | [Skills](skills.md) |
 | **Delivery** | In 1.x, how workflows were installed: as skills, commands, or both. Retired in 2.0. | [Upgrade to 2.0](../help/upgrade-to-2.md) |
 | **Delta spec** | A spec inside a change proposal listing only what changes, under `ADDED`, `MODIFIED`, `REMOVED`, and `RENAMED` headers. | [Delta specs](schemas/spec-driven/index.md#delta-specs-specmd) |
+| **Deliverables** | With the tdd-e2e extension: a change's manifest of what a green e2e run produced (file names, sha256, size), under the change's `deliverables/`. Not an artifact. | [TDD e2e extension](../customize/tdd-e2e.md) |
+| **Evidence** | With the tdd-e2e extension: a change's record of real test runs — the authoritative `evidence/runs/` bundles and the human-readable `evidence.md` projection. Not a planning artifact. | [TDD e2e extension](../customize/tdd-e2e.md) |
 | **Explore** | Think an idea through with the agent before proposing. Writes no code. Skill: `openspec-explore`. | [Explore an idea](skills.md#openspec-explore) |
 | **Fast-forward** | Create a change proposal with every planning artifact in one pass, ready to implement. Skill: `openspec-ff-change`. Not a git fast-forward. | [Skills](skills.md) |
 | **Legacy workflow** | The pre-OPSX `/openspec:*` commands. |  |
