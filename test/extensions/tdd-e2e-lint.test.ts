@@ -821,3 +821,44 @@ it('受信策略 ref 不可解析回退：无 origin/main → 回退 working-tre
   expect(bad.code).toBe(2);
   expect(bad.json.error).toBe('invalid-args');
 });
+
+// ---------- 告警类检查（设计 §6.3：不拦截仅提示，入顶层 warnings[]） ----------
+
+it('trivially-green-command 告警：平凡绿命令（true / : / exit 0 / echo）点名，aggregate/exit 不变', async () => {
+  for (const cmd of ['true', ':', 'exit 0', 'echo all green', 'echo a; echo b']) {
+    const proj = makeProject({ config: { command: cmd } });
+    write(proj, 'src/a.ts', 'export const a = 2;\n');
+    commitAll(proj, 'touch src');
+    const r = runLint(['--gate', '--project', proj, '--base', 'HEAD~1']);
+    expect(r.code, `${cmd}: ${r.stdout}`).toBe(0); // 告警不拦截
+    expect(r.json.aggregate).toBe('PASS'); // aggregate 不因告警改变
+    const w = (r.json.warnings as string[]).filter((x) => x.startsWith('trivially-green-command:'));
+    expect(w.join('\n'), `command: ${cmd}`).toContain(cmd.split(/[;\s]/)[0]);
+  }
+
+  // 对照：真实命令不产生告警
+  const clean = makeProject({ config: { command: COUNTER_CMD } });
+  write(clean, 'src/a.ts', 'export const a = 2;\n');
+  commitAll(clean, 'touch src');
+  const r2 = runLint(['--gate', '--project', clean, '--base', 'HEAD~1']);
+  expect(r2.code).toBe(0);
+  expect((r2.json.warnings as string[]).filter((x) => x.startsWith('trivially-green-command:'))).toEqual([]);
+});
+
+it('diff-outside-inputs 告警：diff 路径落在指纹输入集之外（未跟踪未声明/规划面）→ 告警不拦截', async () => {
+  const proj = makeProject({ config: { command: COUNTER_CMD } });
+  addChange(proj, 'c1');
+  write(proj, 'src/a.ts', 'export const a = 2;\n'); // 跟踪文件 = 指纹输入集内（对照）
+  commitAll(proj, 'change work');
+  expect(finalize(proj, 'c1').code).toBe(0);
+  write(proj, 'untracked-input.log', 'x\n'); // 未跟踪且未声明 include → 指纹不可见
+
+  const r = runLint(['--gate', '--project', proj, '--base', 'HEAD~1']);
+  expect(r.code, `${r.stdout}\n${r.stderr}`).toBe(0); // 告警不拦截
+  expect(r.json.aggregate).toBe('PASS');
+  const w = (r.json.warnings as string[]).filter((x) => x.startsWith('diff-outside-inputs:'));
+  const named = w.join('\n');
+  expect(named).toContain('untracked-input.log'); // 未跟踪未声明输入被点名
+  expect(named).toContain('openspec/changes/c1/.openspec.yaml'); // 规划面路径同样在输入集外
+  expect(named).not.toContain('src/a.ts'); // 指纹输入集内的跟踪路径不点名
+});

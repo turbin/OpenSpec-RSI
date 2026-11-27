@@ -51,7 +51,7 @@ import {
   writeFileSync,
 } from 'node:fs';
 import path from 'node:path';
-import { computeInputKeyV1 } from './lib/fingerprint.mjs';
+import { computeInputKeyV1, EXCLUDED_PLANNING } from './lib/fingerprint.mjs';
 import { computePolicyVersion, discoverCommand, loadProjectConfig, parseChangeMetadata } from './lib/config.mjs';
 import {
   acquireRunLock,
@@ -759,6 +759,46 @@ function reconcileLedger(changeDir, skipSpecs) {
   return { verdict: failures.length > 0 ? 'fail' : 'ok', failures, diagnostics };
 }
 
+// ---------- 告警类检查（设计 §6.3/§9.1：lint 告警不拦截仅提示，入顶层 warnings[]） ----------
+
+/** 平凡绿命令（R3/R13 最低成本探测）：分段全为 true / : / exit 0 / echo … → 告警。 */
+function isTriviallyGreenCommand(command) {
+  const segments = String(command)
+    .split(/&&|\|\||[;\n]/)
+    .map((s) => s.trim())
+    .filter((s) => s !== '');
+  if (segments.length === 0) return false;
+  return segments.every((s) => /^(true|:|exit\s+0|echo(\s.*)?)$/.test(s));
+}
+
+/**
+ * diff 逃逸面（设计 §9.1 "inputs 逃逸面"）：本次 diff 的路径落在指纹输入集
+ * （git 跟踪 ∪ 显式 include，减规划目录排除）之外 → 告警（stale-inputs 观测不到这些改动；
+ * 未跟踪输入须显式 include 声明，否则不受测并告警）。不拦截判定。
+ */
+function diffOutsideInputsWarning(projectRoot, diff, cfg) {
+  let tracked;
+  try {
+    tracked = new Set(gitOut(projectRoot, ['ls-files', '-z']).split('\0').filter(Boolean));
+  } catch {
+    return ['diff-outside-inputs: tracked-file list unavailable — diff paths not checked against the input fingerprint set'];
+  }
+  const included = new Set((cfg.include ?? []).map((p) => String(p).replace(/\\/g, '/').replace(/^\.\//, '')));
+  const outside = new Set();
+  for (const e of diff.entries) {
+    const p = e.path;
+    const excluded = EXCLUDED_PLANNING.some((prefix) => p.startsWith(prefix));
+    if (!excluded && (tracked.has(p) || included.has(p))) continue;
+    outside.add(p);
+  }
+  if (outside.size === 0) return [];
+  const paths = [...outside].sort();
+  const shown = paths.slice(0, 20).join(', ');
+  return [
+    `diff-outside-inputs: ${paths.length} diff path(s) outside the input fingerprint set (stale-inputs cannot observe them): ${shown}${paths.length > 20 ? `, … +${paths.length - 20} more` : ''}`,
+  ];
+}
+
 // ---------- 逐 change 判定 ----------
 
 const PROTECTED_META_KEYS = ['schema', 'skip_specs', 'x-tdd-e2e.skip', 'x-tdd-e2e.skip_reason'];
@@ -991,6 +1031,13 @@ async function executeProjectRun(opts, projectRoot, cfg, demand, judged, fpArgs,
   base.policyFile = policyFile;
   base.policySource = disc.policySource;
   const policyVersion = disc.policyVersion ?? null;
+  // 告警类：发现的命令为平凡绿（R3/R13 最低成本探测，不拦截）
+  base.warnings = [];
+  if (disc.command && isTriviallyGreenCommand(disc.command)) {
+    base.warnings.push(
+      `trivially-green-command: discovered command "${disc.command}" (source ${disc.source ?? '-'}) is trivially green — exit 0 proves nothing about test strength`,
+    );
+  }
 
   if (!demand) {
     let fp;
@@ -1129,6 +1176,9 @@ async function judgeAll(opts) {
   // ①②③
   const judged = set.map((c) => preJudge(c, projectRoot, opts, cfg, diff));
 
+  // 告警类：diff 逃逸面（指纹输入集之外的 diff 路径，不拦截）
+  const outsideWarnings = diffOutsideInputsWarning(projectRoot, diff, cfg);
+
   // ④ 项目级重跑（docs-only / 全 EXEMPT 免重跑；裁定 1 的 trusted 源执法点）
   const decision = decideRerun(diff, judged);
   opts.rerunWaivedWhy = decision.why;
@@ -1174,7 +1224,7 @@ async function judgeAll(opts) {
       projectRun: projectRunOut,
       changes,
       base: diff.base,
-      warnings: [...policyWarnings, ...diff.warnings, ...typoWarnings],
+      warnings: [...policyWarnings, ...diff.warnings, ...outsideWarnings, ...(projectRun.warnings ?? []), ...typoWarnings],
     },
     code: aggregate === 'FAIL' ? 1 : 0,
     ctx: { projectRoot, cfg, diff, set, judged, projectRun, projectRunOut, fpArgs },
