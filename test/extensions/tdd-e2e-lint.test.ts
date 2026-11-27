@@ -8,6 +8,7 @@ import { spawnSync, execSync } from 'node:child_process';
 import * as fs from 'node:fs';
 import * as os from 'node:os';
 import * as path from 'node:path';
+import { createHash } from 'node:crypto';
 import { computePlanningHash } from '../../extensions/tdd-e2e/scripts/lib/bundle.mjs';
 
 const repoRoot = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..');
@@ -754,4 +755,57 @@ it('元数据近似键 → warnings 报 metadata-typo 诊断，不拦截判定�
   const r2 = runLint(['--gate', '--change', 'c1', '--project', clean, '--base', 'HEAD~1']);
   expect(r2.code).toBe(0);
   expect((r2.json.warnings as string[]).filter((w) => w.startsWith('metadata-typo:'))).toEqual([]);
+});
+
+// ---------- 受信策略 ref（契约一：命令发现/policyVersion/enforce/allowlist 走受信 ref） ----------
+
+it('受信策略 ref：默认 origin/main 解析命令与 policyVersion，工作树篡改 test:e2e 不生效', async () => {
+  // ① 临时双 ref 仓库：origin/main 版 test:e2e = COUNTER_CMD，工作树版被改成平凡绿 true
+  const p1 = makeProject({ pkg: { scripts: { 'test:e2e': COUNTER_CMD } } });
+  addChange(p1, 'c1');
+  commitAll(p1, 'add c1');
+  const base1 = headSha(p1);
+  git(p1, `update-ref refs/remotes/origin/main ${base1}`);
+  write(p1, 'package.json', JSON.stringify({ scripts: { 'test:e2e': 'true' } })); // 工作树篡改
+
+  const r1 = runLint(['--gate', '--change', 'c1', '--project', p1, '--base', base1]);
+  expect(r1.json.projectRun.command).toBe(COUNTER_CMD); // discovery 仍解析 origin/main 版本
+  expect(r1.json.projectRun.commandSource).toBe('package-json');
+  expect(r1.json.projectRun.policySource).toBe('ref:origin/main');
+  const refPkg = execSync('git show origin/main:package.json', { cwd: p1, encoding: 'utf8' });
+  expect(r1.json.projectRun.policyVersion).toBe(createHash('sha256').update(refPkg).digest('hex')); // policyVersion = ref 内容哈希
+  expect(fs.readFileSync(path.join(p1, 'ran.log'), 'utf8')).toBe('x'); // 真实执行的是 ref 版命令（不是 true）
+
+  // ② 完整放行链：finalize 同样按受信 ref 收尾（键含 ref 的 policyVersion）→ --gate 缺省也走 ref → PASS
+  const p2 = makeProject({ pkg: { scripts: { 'test:e2e': COUNTER_CMD } } });
+  addChange(p2, 'c1');
+  commitAll(p2, 'add c1');
+  const base2 = headSha(p2);
+  git(p2, `update-ref refs/remotes/origin/main ${base2}`);
+  write(p2, 'package.json', JSON.stringify({ scripts: { 'test:e2e': 'true' } }));
+  const f2 = spawnSync(
+    process.execPath,
+    [gateScript, '--change', 'c1', '--project', p2, '--finalize', '--policy-ref', 'origin/main', '--json'],
+    { encoding: 'utf-8', env: { ...process.env, CI: '' } },
+  );
+  expect(f2.status, f2.stderr ?? '').toBe(0);
+  const r2 = runLint(['--gate', '--change', 'c1', '--project', p2, '--base', base2]);
+  expect(r2.code, `${r2.stdout}\n${r2.stderr}`).toBe(0);
+  expect(r2.json.aggregate).toBe('PASS');
+  expect(r2.json.changes[0].status).toBe('PASS');
+  expect(r2.json.projectRun.policySource).toBe('ref:origin/main');
+});
+
+it('受信策略 ref 不可解析回退：无 origin/main → 回退 working-tree 并记 warning；显式 ref 不可解析 → exit 2', async () => {
+  const proj = makeProject({ config: { command: COUNTER_CMD } });
+  write(proj, 'src/a.ts', 'export const a = 2;\n');
+  commitAll(proj, 'touch src');
+  const r = runLint(['--gate', '--project', proj, '--base', 'HEAD~1']); // 缺省 --policy-ref：origin/main 不可解析
+  expect(r.code).toBe(0);
+  expect(r.json.projectRun.policySource).toBe('working-tree');
+  expect((r.json.warnings as string[]).some((w) => w.includes('origin/main'))).toBe(true); // 回退有 warning
+
+  const bad = runLint(['--gate', '--project', proj, '--base', 'HEAD~1', '--policy-ref', 'no-such-ref']);
+  expect(bad.code).toBe(2);
+  expect(bad.json.error).toBe('invalid-args');
 });

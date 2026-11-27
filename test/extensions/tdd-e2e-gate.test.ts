@@ -90,6 +90,7 @@ it('loadProjectConfig: 缺省全 null/false（无 tdd-e2e.config.json）', () =>
     collect: null,
     produces: null,
     skipApproved: false,
+    policySource: 'working-tree',
   });
 });
 
@@ -116,6 +117,7 @@ it('loadProjectConfig: 读取全部字段；非法 JSON 抛 invalid-config', () 
     collect: ['dist/*'],
     produces: ['dist/app.js'],
     skipApproved: true,
+    policySource: 'working-tree',
   });
 
   fs.writeFileSync(path.join(root, 'tdd-e2e.config.json'), '{ not json');
@@ -195,6 +197,8 @@ it('discoverCommand: config > package-json > change-metadata 三级优先', () =
   expect(discoverCommand({ projectRoot: all, changeMetadata: { 'x-tdd-e2e.command': 'cmd-change' } })).toEqual({
     command: 'cmd-config',
     source: 'config',
+    policySource: 'working-tree',
+    policyVersion: sha256File(path.join(all, 'tdd-e2e.config.json')),
   });
 
   const mid = fs.mkdtempSync(path.join(os.tmpdir(), 'e2e-gate-dc-'));
@@ -203,6 +207,8 @@ it('discoverCommand: config > package-json > change-metadata 三级优先', () =
   expect(discoverCommand({ projectRoot: mid, changeMetadata: { 'x-tdd-e2e.command': 'cmd-change' } })).toEqual({
     command: 'cmd-pkg',
     source: 'package-json',
+    policySource: 'working-tree',
+    policyVersion: sha256File(path.join(mid, 'package.json')),
   });
 
   const low = fs.mkdtempSync(path.join(os.tmpdir(), 'e2e-gate-dc-'));
@@ -210,8 +216,82 @@ it('discoverCommand: config > package-json > change-metadata 三级优先', () =
   expect(discoverCommand({ projectRoot: low, changeMetadata: { 'x-tdd-e2e.command': 'cmd-change' } })).toEqual({
     command: 'cmd-change',
     source: 'change-metadata',
+    policySource: 'working-tree',
+    policyVersion: null,
   });
-  expect(discoverCommand({ projectRoot: low, changeMetadata: {} })).toEqual({ command: null, source: null });
+  expect(discoverCommand({ projectRoot: low, changeMetadata: {} })).toEqual({
+    command: null,
+    source: null,
+    policySource: 'working-tree',
+    policyVersion: null,
+  });
+});
+
+// ---------- 受信策略 ref（契约一：命令/策略只读受信版本，候选 checkout 只提供被测代码与测试） ----------
+
+const gitShowBuf = (root: string, ref: string, rel: string): Buffer =>
+  execSync(`git show ${ref}:${rel}`, { cwd: root, maxBuffer: 64 * 1024 * 1024 });
+const sha256Buf = (buf: Buffer): string => createHash('sha256').update(buf).digest('hex');
+
+it('policyRef：loadProjectConfig/discoverCommand 走 git show 受信版本，policyVersion=ref 内容哈希（工作树篡改不生效）', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'e2e-gate-ref-'));
+  tempDirs.push(root);
+  fs.writeFileSync(path.join(root, 'tdd-e2e.config.json'), JSON.stringify({ command: 'cmd-config-old', enforce: 'all-changes' }));
+  fs.writeFileSync(path.join(root, 'package.json'), JSON.stringify({ scripts: { 'test:e2e': 'cmd-pkg-old' } }));
+  execSync('git init -q -b main', { cwd: root });
+  execSync('git add -A', { cwd: root });
+  execSync('git -c user.email=t@t -c user.name=t commit -qm init', { cwd: root });
+  execSync('git update-ref refs/remotes/origin/main HEAD', { cwd: root });
+  // 工作树篡改（未提交）：命令换成平凡绿 true、enforce 换掉——受信 ref 解析应完全无视
+  fs.writeFileSync(path.join(root, 'tdd-e2e.config.json'), JSON.stringify({ command: 'true' }));
+  fs.writeFileSync(path.join(root, 'package.json'), JSON.stringify({ scripts: { 'test:e2e': 'true' } }));
+
+  const refCfg = loadProjectConfig(root, { policyRef: 'origin/main' });
+  expect(refCfg.command).toBe('cmd-config-old');
+  expect(refCfg.enforce).toBe('all-changes');
+  expect(refCfg.policySource).toBe('ref:origin/main');
+
+  const refDisc = discoverCommand({ projectRoot: root, policyRef: 'origin/main' });
+  expect(refDisc).toEqual({
+    command: 'cmd-config-old',
+    source: 'config',
+    policySource: 'ref:origin/main',
+    policyVersion: sha256Buf(gitShowBuf(root, 'origin/main', 'tdd-e2e.config.json')),
+  });
+
+  const wt = discoverCommand({ projectRoot: root });
+  expect(wt.command).toBe('true');
+  expect(wt.policySource).toBe('working-tree');
+  expect(wt.policyVersion).toBe(sha256File(path.join(root, 'tdd-e2e.config.json')));
+  expect(refDisc.policyVersion).not.toBe(wt.policyVersion); // ref 内容哈希 ≠ 工作树哈希
+
+  // ref 内无 tdd-e2e.config.json 时命令发现按 ref 内 package.json 走（不受工作树篡改）
+  const refPkgOnly = discoverCommand({ projectRoot: root, policyRef: 'origin/main', changeMetadata: {} });
+  expect(refPkgOnly.source).toBe('config'); // ref 里 config 在，先命中
+  const pkgSha = sha256Buf(gitShowBuf(root, 'origin/main', 'package.json'));
+  expect(pkgSha).not.toBe(sha256File(path.join(root, 'package.json')));
+});
+
+it('policyRef 不可解析 → fail-closed 抛错（不静默降级 working-tree）', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'e2e-gate-ref-'));
+  tempDirs.push(root);
+  fs.writeFileSync(path.join(root, 'tdd-e2e.config.json'), JSON.stringify({ command: 'cmd' }));
+  execSync('git init -q -b main', { cwd: root });
+  execSync('git add -A', { cwd: root });
+  execSync('git -c user.email=t@t -c user.name=t commit -qm init', { cwd: root });
+
+  for (const fn of [
+    () => loadProjectConfig(root, { policyRef: 'no-such-ref' }),
+    () => discoverCommand({ projectRoot: root, policyRef: 'no-such-ref' }),
+  ]) {
+    let err: { code?: string } | undefined;
+    try {
+      fn();
+    } catch (e) {
+      err = e as { code?: string };
+    }
+    expect(err?.code).toBe('invalid-config');
+  }
 });
 
 // ---------- e2e-gate 运行协议 ----------
@@ -284,6 +364,41 @@ it('command 优先级：config > package.json test:e2e > change 级 x- 键（仅
   expect(j3.commandSource).toBe('change-metadata');
   expect(fs.readFileSync(path.join(p3, 'ran.txt'), 'utf8')).toBe('change');
   expect(j3.policyVersion).toBeNull();
+});
+
+it('--policy-ref：命令与策略标识取受信 ref，工作树篡改不生效（契约一）', async () => {
+  const proj = makeProject({ pkg: { scripts: { 'test:e2e': marker('ref') } } });
+  const head = execSync('git rev-parse HEAD', { cwd: proj, encoding: 'utf8' }).trim();
+  execSync(`git update-ref refs/remotes/origin/main ${head}`, { cwd: proj });
+  // 工作树把 test:e2e 改成另一个命令（未提交）——受信 ref 解析应完全无视
+  fs.writeFileSync(path.join(proj, 'package.json'), JSON.stringify({ scripts: { 'test:e2e': marker('worktree') } }));
+
+  const r = await runGate(['--change', 'c1', '--project', proj, '--policy-ref', 'origin/main']);
+  expect(r.code, r.stderr).toBe(0);
+  const j = JSON.parse(r.stdout);
+  expect(j.command).toBe(marker('ref'));
+  expect(j.commandSource).toBe('package-json');
+  expect(j.policySource).toBe('ref:origin/main');
+  expect(j.policyVersion).toBe(sha256Buf(gitShowBuf(proj, 'origin/main', 'package.json'))); // policyVersion = ref 内容哈希
+  expect(fs.readFileSync(path.join(proj, 'ran.txt'), 'utf8')).toBe('ref'); // 真跑的是 ref 版命令
+});
+
+it('--policy-ref 缺省不设 = working-tree（本地 advisory）；显式 ref 不可解析 → exit 2 invalid-args', async () => {
+  const proj = makeProject({ pkg: { scripts: { 'test:e2e': marker('worktree') } } });
+  const head = execSync('git rev-parse HEAD', { cwd: proj, encoding: 'utf8' }).trim();
+  execSync(`git update-ref refs/remotes/origin/main ${head}`, { cwd: proj }); // 即便 origin/main 可解析
+  fs.writeFileSync(path.join(proj, 'package.json'), JSON.stringify({ scripts: { 'test:e2e': marker('worktree2') } }));
+
+  const r = await runGate(['--change', 'c1', '--project', proj]);
+  expect(r.code, r.stderr).toBe(0);
+  const j = JSON.parse(r.stdout);
+  expect(j.policySource).toBe('working-tree'); // gate 缺省不自动取 ref
+  expect(j.policyVersion).toBe(sha256File(path.join(proj, 'package.json')));
+  expect(fs.readFileSync(path.join(proj, 'ran.txt'), 'utf8')).toBe('worktree2');
+
+  const bad = await runGate(['--change', 'c1', '--project', proj, '--policy-ref', 'no-such-ref']);
+  expect(bad.code).toBe(2);
+  expect(JSON.parse(bad.stdout).error).toBe('invalid-args');
 });
 
 it('produces 声明但缺应交制品 → 失败', async () => {

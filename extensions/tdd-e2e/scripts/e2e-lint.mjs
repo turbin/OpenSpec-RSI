@@ -4,9 +4,9 @@
  * ＋ `--archive-gate --execute` 受管归档（契约三 · 归档契约"已同步后移动"）。
  *
  * 用法：node e2e-lint.mjs --gate [--change <name>] [--project <root>] [--base <ref>]
- *                        [--schema <name>] [--json] [--timeout <ms>]
+ *                        [--policy-ref <ref>] [--schema <name>] [--json] [--timeout <ms>]
  *       node e2e-lint.mjs --archive-gate --change <name> --execute [--project <root>]
- *                        [--base <ref>] [--json] [--timeout <ms>]
+ *                        [--base <ref>] [--policy-ref <ref>] [--json] [--timeout <ms>]
  *
  * 发布资格 = 受信执行成功 ∧ 快照绑定一致 ∧ 台账/发布契约通过（§6.3 判定语义）。
  * 判定顺序（控制器裁定 5）：①有效 schema 解析（元数据无效 = FAIL 独立错误路径）
@@ -24,6 +24,11 @@
  * stale、对账失败、发布契约不满足等），2 = 用法错误。"未执行"永不记 PASS。
  * authority 不参与判定（本 CLI 不设 authority 面）；staging 记录 commandSource 仅信息性。
  * 元数据近似键 typo 诊断（设计 §6.3）走顶层 warnings（不拦截判定）。
+ *
+ * 受信策略 ref（契约一）：--policy-ref 缺省 = origin/main（可解析时），不可解析回退
+ * working-tree 并记 warning；命令发现、policyVersion、enforce/allowlist 解析全部走该
+ * 受信 ref（`git show <ref>:…`），被测代码/指纹/规划面仍取 working tree（候选 checkout
+ * 只提供被测代码与测试）。显式 ref 不可解析 = 用法错误 exit 2。
  *
  * `--archive-gate --execute`（契约三：语义 = "已同步后移动"，非 `openspec archive` 语义等价物）：
  * ①完整判定（含重跑，复用 --gate 单 change 路径；判定红 = 拒绝不移动）→ ②快照复验（受测快照 ==
@@ -47,7 +52,7 @@ import {
 } from 'node:fs';
 import path from 'node:path';
 import { computeInputKeyV1 } from './lib/fingerprint.mjs';
-import { discoverCommand, loadProjectConfig, parseChangeMetadata } from './lib/config.mjs';
+import { computePolicyVersion, discoverCommand, loadProjectConfig, parseChangeMetadata } from './lib/config.mjs';
 import {
   acquireRunLock,
   combineInputKey,
@@ -79,6 +84,7 @@ function parseArgs(argv) {
     change: null,
     project: process.cwd(),
     base: null,
+    policyRef: null,
     schema: null,
     json: false,
     timeoutMs: DEFAULT_TIMEOUT_MS,
@@ -97,6 +103,7 @@ function parseArgs(argv) {
       case '--change': opts.change = need(a); break;
       case '--project': opts.project = need(a); break;
       case '--base': opts.base = need(a); break;
+      case '--policy-ref': opts.policyRef = need(a); break;
       case '--schema': opts.schema = need(a); break;
       case '--json': opts.json = true; break;
       case '--timeout': {
@@ -966,29 +973,24 @@ function decideRerun(diff, judged) {
 /**
  * 权威重跑（裁定 1）：只接受 trusted 源命令（config → package-json）；发现链只落到
  * change-metadata → FAIL no-trusted-command（staging 记录 commandSource 仅信息性，不作信任）。
+ * 契约一：policyRef 设置时命令发现与 policyVersion 全部读自受信 ref，工作树不参与策略解析。
  * 前后指纹不一致 → stale-inputs 作废；超时 = 红。
  */
-async function executeProjectRun(opts, projectRoot, cfg, demand, judged, fpArgs) {
-  const base = { status: null, reason: '', fpHash: null, policyFile: null };
+async function executeProjectRun(opts, projectRoot, cfg, demand, judged, fpArgs, policyRef) {
+  const base = { status: null, reason: '', fpHash: null, policyFile: null, policyRef };
   const merged = {};
   for (const p of judged) {
     if (p.meta && p.meta.values) Object.assign(merged, p.meta.values);
   }
-  const disc = discoverCommand({ projectRoot, changeMetadata: merged });
+  const disc = discoverCommand({ projectRoot, changeMetadata: merged, policyRef });
   const policyFile = (() => {
     const file = disc.source === 'config' ? 'tdd-e2e.config.json'
       : disc.source === 'package-json' ? 'package.json' : null;
     return file;
   })();
-  const policyVersion = (() => {
-    if (!policyFile) return null;
-    try {
-      return createHash('sha256').update(readFileSync(path.join(projectRoot, policyFile))).digest('hex');
-    } catch {
-      return null;
-    }
-  })();
   base.policyFile = policyFile;
+  base.policySource = disc.policySource;
+  const policyVersion = disc.policyVersion ?? null;
 
   if (!demand) {
     let fp;
@@ -1079,11 +1081,33 @@ function aggregateOf(projectRun, judged) {
 async function judgeAll(opts) {
   const projectRoot = path.resolve(opts.project);
 
+  // 受信策略 ref（契约一）：显式 --policy-ref 不可解析 = 用法错误；缺省默认 origin/main
+  // （可解析时），不可解析回退 working-tree 并记 warning（本地 advisory 语义）。
+  let policyRef = opts.policyRef;
+  const policyWarnings = [];
+  if (policyRef !== null) {
+    try {
+      gitOut(projectRoot, ['rev-parse', '--verify', '--quiet', `${policyRef}^{commit}`]);
+    } catch {
+      return { obj: { error: 'invalid-args', message: `--policy-ref ref not resolvable: ${policyRef}` }, code: 2 };
+    }
+  } else {
+    try {
+      gitOut(projectRoot, ['rev-parse', '--verify', '--quiet', 'origin/main^{commit}']);
+      policyRef = 'origin/main';
+    } catch {
+      policyRef = null;
+      policyWarnings.push(
+        'policy-ref: default origin/main not resolvable — command/policy discovery fell back to the working tree (advisory)',
+      );
+    }
+  }
+
   let cfg;
   try {
-    cfg = loadProjectConfig(projectRoot);
+    cfg = loadProjectConfig(projectRoot, { policyRef });
   } catch (e) {
-    return { obj: hardFail(e.code ?? 'invalid-config', e.message), code: 1 };
+    return { obj: hardFail(e.code ?? 'invalid-config', e.message, policyWarnings), code: 1 };
   }
   if (cfg.enforce !== null && !VALID_ENFORCE.has(cfg.enforce)) {
     return { obj: hardFail('invalid-config', `invalid enforce value: ${cfg.enforce} (expected tdd-driven-only | all-changes)`), code: 1 };
@@ -1094,12 +1118,12 @@ async function judgeAll(opts) {
     diff = resolveDiff(projectRoot, opts.base);
   } catch (e) {
     if (e instanceof UsageError) return { obj: { error: 'invalid-args', message: e.message }, code: 2 };
-    return { obj: hardFail('diff-failed', e.message), code: 1 };
+    return { obj: hardFail('diff-failed', e.message, policyWarnings), code: 1 };
   }
 
   const set = buildInspectionSet(projectRoot, diff, opts.change);
   if (opts.change !== null && !existsSync(changeDirOf(projectRoot, opts.change))) {
-    return { obj: hardFail('change-not-found', `change not found: ${opts.change}`, diff.warnings), code: 1 };
+    return { obj: hardFail('change-not-found', `change not found: ${opts.change}`, [...policyWarnings, ...diff.warnings]), code: 1 };
   }
 
   // ①②③
@@ -1109,10 +1133,12 @@ async function judgeAll(opts) {
   const decision = decideRerun(diff, judged);
   opts.rerunWaivedWhy = decision.why;
   const fpArgs = { projectRoot, planningRoot: projectRoot, include: cfg.include ?? [] };
-  const projectRun = await executeProjectRun(opts, projectRoot, cfg, decision.demand, judged, fpArgs);
+  const projectRun = await executeProjectRun(opts, projectRoot, cfg, decision.demand, judged, fpArgs, policyRef);
   const projectRunOut = {
     status: projectRun.status,
     reason: projectRun.reason,
+    policySource: projectRun.policySource,
+    policyVersion: projectRun.policyVersion ?? null,
   };
   if (projectRun.error) projectRunOut.error = projectRun.error;
   if (projectRun.command !== undefined) {
@@ -1148,7 +1174,7 @@ async function judgeAll(opts) {
       projectRun: projectRunOut,
       changes,
       base: diff.base,
-      warnings: [...diff.warnings, ...typoWarnings],
+      warnings: [...policyWarnings, ...diff.warnings, ...typoWarnings],
     },
     code: aggregate === 'FAIL' ? 1 : 0,
     ctx: { projectRoot, cfg, diff, set, judged, projectRun, projectRunOut, fpArgs },
@@ -1175,14 +1201,13 @@ function relPosix(projectRoot, abs) {
   return path.relative(projectRoot, abs).split(path.sep).join('/');
 }
 
-/** 当前策略版本 hash（与判定/收尾同口径：sha256(策略文件内容)）。 */
-function currentPolicyVersion(projectRoot, policyFile) {
-  if (!policyFile) return null;
-  try {
-    return createHash('sha256').update(readFileSync(path.join(projectRoot, policyFile))).digest('hex');
-  } catch {
-    return null;
-  }
+/** 当前策略版本 hash（与判定/收尾同口径：sha256(策略文件内容)；policyRef 设置时取受信 ref 版本）。 */
+function currentPolicyVersion(projectRoot, policyFile, policyRef) {
+  return computePolicyVersion(
+    projectRoot,
+    policyFile === 'tdd-e2e.config.json' ? 'config' : policyFile === 'package.json' ? 'package-json' : null,
+    policyRef ?? null,
+  );
 }
 
 /**
@@ -1198,7 +1223,7 @@ async function reverifySnapshot({ projectRoot, changeDir, p, cfg, fpArgs, projec
       const planningHash = computePlanningHash(changeDir);
       inputKeyHash = combineInputKey(
         computeContentHash(fp.hash, planningHash),
-        currentPolicyVersion(projectRoot, projectRun.policyFile),
+        currentPolicyVersion(projectRoot, projectRun.policyFile, projectRun.policyRef),
       );
     } catch (e) {
       return { ok: false, reason: `snapshot-recheck: ${e.message}` };

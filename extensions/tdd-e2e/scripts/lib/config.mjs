@@ -1,12 +1,18 @@
 // extensions/tdd-e2e/scripts/lib/config.mjs
 // 配置发现（任务 3）：项目级受信源加载、命令发现链（受信源优先）、
 // change 元数据扁平点号键解析 + 近似键 typo 诊断。
-// 零依赖：仅 node 内置模块（fs / path）。
+// 受信策略 ref（契约一）：policyRef 设置时，tdd-e2e.config.json / package.json 的
+// 解析与 policyVersion 哈希一律读自 `git show <ref>:<相对路径>`（受信版本）；
+// 未设置保持 working-tree 行为。被测代码/指纹/规划面不在此列（候选 checkout 提供）。
+// 零依赖：仅 node 内置模块（child_process / crypto / fs / path）。
 
+import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 
 const CONFIG_FILENAME = 'tdd-e2e.config.json';
+const PACKAGE_FILENAME = 'package.json';
 const METADATA_FILENAME = '.openspec.yaml';
 
 /** 唯一识别的 change 级 x- 键（设计 §6.3 扁平点号键）。 */
@@ -19,36 +25,86 @@ function fail(code, message) {
 }
 
 /**
- * 读 JSON 文件：不存在 → undefined（合法缺省）；
- * 存在但不可读/坏 JSON → 抛 fail(code)（fail-closed，"配置不可读 ≠ 通过"）。
+ * 策略文件内容（受信 ref 或 working tree）：
+ * policyRef 设置 → `git show <policyRef>:<relPath>`（spawn git，cwd=projectRoot）；
+ * ref 内路径不存在 → undefined（与工作树 ENOENT 同语义，合法缺省）；
+ * 其余 git 失败（ref 不可解析等）→ 抛 fail(errorCode)（fail-closed，不静默降级）。
+ * 未设置 → 工作树 readFileSync，ENOENT → undefined，其他读失败 → 抛 fail(errorCode)。
+ *
+ * @returns {Buffer|undefined}
  */
-function readJsonIfExists(file, errorCode) {
-  let raw;
-  try {
-    raw = readFileSync(file, 'utf8');
-  } catch (e) {
-    if (e.code === 'ENOENT') return undefined;
-    throw fail(errorCode, `${path.basename(file)} unreadable: ${e.message}`);
+function readPolicyFile(projectRoot, policyRef, relPath, errorCode) {
+  if (!policyRef) {
+    try {
+      return readFileSync(path.join(projectRoot, relPath));
+    } catch (e) {
+      if (e.code === 'ENOENT') return undefined;
+      throw fail(errorCode, `${path.basename(relPath)} unreadable: ${e.message}`);
+    }
   }
   try {
-    return JSON.parse(raw);
+    return execFileSync('git', ['show', `${policyRef}:${relPath}`], {
+      cwd: projectRoot,
+      stdio: ['ignore', 'pipe', 'pipe'],
+      maxBuffer: 64 * 1024 * 1024,
+    });
+  } catch (e) {
+    const msg = String(e.stderr ?? '');
+    if (/does not exist in|exists on disk, but not in/.test(msg)) return undefined;
+    throw fail(errorCode, `git show ${policyRef}:${relPath} failed: ${msg.trim() || e.message}`);
+  }
+}
+
+/**
+ * 读 JSON 策略文件：不存在 → undefined（合法缺省）；
+ * 存在但坏 JSON → 抛 fail(errorCode)（fail-closed，"配置不可读 ≠ 通过"）。
+ */
+function readJsonIfExists(projectRoot, policyRef, relPath, errorCode) {
+  const raw = readPolicyFile(projectRoot, policyRef, relPath, errorCode);
+  if (raw === undefined) return undefined;
+  try {
+    return JSON.parse(raw.toString('utf8'));
   } catch {
-    throw fail(errorCode, `${path.basename(file)} is not valid JSON`);
+    throw fail(errorCode, `${path.basename(relPath)} is not valid JSON`);
+  }
+}
+
+/**
+ * 策略版本 hash（裁定 2 / 契约一）：按命令发现链命中的源读策略文件内容做 sha256。
+ * policyRef 设置时内容取自受信 ref（`git show`），未设置取工作树。
+ * 源为 change-metadata / 无源 / 读不到 → null。
+ *
+ * @param {string} projectRoot
+ * @param {'config'|'package-json'|string|null|undefined} source
+ * @param {string|null} [policyRef]
+ * @returns {string|null}
+ */
+export function computePolicyVersion(projectRoot, source, policyRef = null) {
+  const file = source === 'config' ? CONFIG_FILENAME
+    : source === 'package-json' ? PACKAGE_FILENAME
+      : null;
+  if (!file) return null;
+  try {
+    const buf = readPolicyFile(projectRoot, policyRef, file, source === 'config' ? 'invalid-config' : 'invalid-package-json');
+    return buf === undefined ? null : createHash('sha256').update(buf).digest('hex');
+  } catch {
+    return null;
   }
 }
 
 /**
  * 加载项目级 tdd-e2e.config.json。
  * 缺省全 null/false；字段类型不符 → 抛 invalid-config（fail-closed）；
- * 未知键忽略（向前兼容）。
+ * 未知键忽略（向前兼容）。policyRef 设置时读受信 ref 版本（契约一）。
  *
  * @param {string} projectRoot
+ * @param {{policyRef?: string|null}} [options]
  * @returns {{command: string|null, enforce: string|null, allowlist: string[]|null,
  *            include: string[]|null, collect: string[]|null, produces: string[]|null,
- *            skipApproved: boolean}}
+ *            skipApproved: boolean, policySource: 'working-tree'|`ref:${string}`}}
  */
-export function loadProjectConfig(projectRoot) {
-  const parsed = readJsonIfExists(path.join(projectRoot, CONFIG_FILENAME), 'invalid-config');
+export function loadProjectConfig(projectRoot, { policyRef = null } = {}) {
+  const parsed = readJsonIfExists(projectRoot, policyRef, CONFIG_FILENAME, 'invalid-config');
   const defaults = {
     command: null,
     enforce: null,
@@ -57,6 +113,7 @@ export function loadProjectConfig(projectRoot) {
     collect: null,
     produces: null,
     skipApproved: false,
+    policySource: policyRef ? `ref:${policyRef}` : 'working-tree',
   };
   if (parsed === undefined) return defaults;
   if (parsed === null || typeof parsed !== 'object' || Array.isArray(parsed)) {
@@ -92,6 +149,7 @@ export function loadProjectConfig(projectRoot) {
     collect: strArrayOrNull(parsed.collect, 'collect'),
     produces: strArrayOrNull(parsed.produces, 'produces'),
     skipApproved,
+    policySource: defaults.policySource,
   };
 }
 
@@ -99,19 +157,28 @@ export function loadProjectConfig(projectRoot) {
  * 命令发现链（只读项目级受信源，change 级 x- 键仅作提示）：
  *   tdd-e2e.config.json 的 command > package.json scripts["test:e2e"] > x-tdd-e2e.command。
  * 全空 → { command: null, source: null }（调用方 fail-closed）。
+ * policyRef 设置时项目级受信源读自 `git show <policyRef>:…`（契约一）；
+ * policyVersion = 命中策略文件的内容 sha256（同一受信来源），change-metadata / 无源 → null。
  * changeMetadata 接受扁平值记录（parseChangeMetadata().values）或其 {values, typos} 外壳。
  *
- * @param {{projectRoot: string, changeMetadata?: Record<string, string|boolean>}} params
- * @returns {{command: string|null, source: 'config'|'package-json'|'change-metadata'|null}}
+ * @param {{projectRoot: string, changeMetadata?: Record<string, string|boolean>, policyRef?: string|null}} params
+ * @returns {{command: string|null, source: 'config'|'package-json'|'change-metadata'|null,
+ *            policySource: 'working-tree'|`ref:${string}`, policyVersion: string|null}}
  */
-export function discoverCommand({ projectRoot, changeMetadata } = {}) {
-  const cfg = loadProjectConfig(projectRoot); // 坏配置 → 抛 invalid-config
+export function discoverCommand({ projectRoot, changeMetadata, policyRef = null } = {}) {
+  const policySource = policyRef ? `ref:${policyRef}` : 'working-tree';
+  const cfg = loadProjectConfig(projectRoot, { policyRef }); // 坏配置 → 抛 invalid-config
   // 空白命令视为未配置（否则 shell 执行空串 exit 0 = 无测试装绿）。
   if (typeof cfg.command === 'string' && cfg.command.trim() !== '') {
-    return { command: cfg.command, source: 'config' };
+    return {
+      command: cfg.command,
+      source: 'config',
+      policySource,
+      policyVersion: computePolicyVersion(projectRoot, 'config', policyRef),
+    };
   }
 
-  const pkg = readJsonIfExists(path.join(projectRoot, 'package.json'), 'invalid-package-json');
+  const pkg = readJsonIfExists(projectRoot, policyRef, PACKAGE_FILENAME, 'invalid-package-json');
   if (pkg !== undefined && pkg !== null && typeof pkg === 'object' && !Array.isArray(pkg)) {
     const script = pkg.scripts?.['test:e2e'];
     if (script !== undefined && script !== null) {
@@ -119,7 +186,12 @@ export function discoverCommand({ projectRoot, changeMetadata } = {}) {
         // 受信源形态错误 → fail-closed，不静默降级到 change 级提示。
         throw fail('invalid-package-json', 'package.json scripts["test:e2e"] must be a non-empty string');
       }
-      return { command: script, source: 'package-json' };
+      return {
+        command: script,
+        source: 'package-json',
+        policySource,
+        policyVersion: computePolicyVersion(projectRoot, 'package-json', policyRef),
+      };
     }
   }
 
@@ -130,9 +202,9 @@ export function discoverCommand({ projectRoot, changeMetadata } = {}) {
     : (changeMetadata ?? {});
   const changeCmd = mv['x-tdd-e2e.command'];
   if (typeof changeCmd === 'string' && changeCmd.trim() !== '') {
-    return { command: changeCmd, source: 'change-metadata' };
+    return { command: changeCmd, source: 'change-metadata', policySource, policyVersion: null };
   }
-  return { command: null, source: null };
+  return { command: null, source: null, policySource, policyVersion: null };
 }
 
 // 近似键判定：我们的命名空间下的未知键 / 分隔符变体 / 裸后缀（核心键不撞车）。

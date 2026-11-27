@@ -3,12 +3,17 @@
  * e2e-gate — TDD e2e 运行协议（设计 §6.3）。
  *
  * 用法：node e2e-gate.mjs --change <name> [--project <root>] [--finalize] [--rerun]
- *                        [--authority ci|local|pre-commit] [--json] [--timeout <ms>]
+ *                        [--policy-ref <ref>] [--authority ci|local|pre-commit]
+ *                        [--json] [--timeout <ms>]
  *
  * 运行协议顺序：发现命令（全空且无豁免 → no-command fail-closed）→ 前指纹
  * computeInputKeyV1 → spawn（shell 命令、超时 kill 进程组 → 124 红）→ 后指纹
  * （不一致 → stale-inputs 作废）→ 写 evidence/.staging/<run-id>/e2e-result.json
  * → 绿则按 collect 生成制品清单（文件名+sha256+大小）→ --json 输出。
+ *
+ * 受信策略 ref（契约一）：--policy-ref 缺省不设 = 本地 advisory 用 working-tree；
+ * 设置时命令发现与 policyVersion 读自 `git show <ref>:…`（与 e2e-lint 同语义），
+ * 被测代码/指纹/规划面仍取 working tree。显式 ref 不可解析 = exit 2 invalid-args。
  *
  * authority 仅记录执行环境（ci/local/pre-commit），永不参与判定（gpt P2-2）。
  * 退出码 = 测试退出码；门禁级失败 = 1；用法错误 = 2。
@@ -69,6 +74,7 @@ function parseArgs(argv) {
     project: process.cwd(),
     finalize: false,
     rerun: false,
+    policyRef: null,
     authority: null,
     json: false,
     timeoutMs: DEFAULT_TIMEOUT_MS,
@@ -85,6 +91,7 @@ function parseArgs(argv) {
       case '--project': opts.project = need(a); break;
       case '--finalize': opts.finalize = true; break;
       case '--rerun': opts.rerun = true; break;
+      case '--policy-ref': opts.policyRef = need(a); break;
       case '--authority': opts.authority = need(a); break;
       case '--json': opts.json = true; break;
       case '--timeout': {
@@ -112,19 +119,6 @@ function resolveAuthority(explicit) {
 
 function validChangeName(name) {
   return /^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(name) && !name.includes('..');
-}
-
-/** 策略版本 hash（裁定 2）：按命令发现链命中的源读策略文件；change-metadata / 读不到 → null。 */
-function computePolicyVersion(projectRoot, source) {
-  const file = source === 'config' ? 'tdd-e2e.config.json'
-    : source === 'package-json' ? 'package.json'
-      : null;
-  if (!file) return null;
-  try {
-    return createHash('sha256').update(readFileSync(path.join(projectRoot, file))).digest('hex');
-  } catch {
-    return null;
-  }
 }
 
 // ---------- --finalize 幂等收尾（Task 4，E1 本地收尾） ----------
@@ -372,10 +366,23 @@ async function runGate(opts) {
   const changeDir = path.join(projectRoot, 'openspec', 'changes', opts.change);
   const authority = resolveAuthority(opts.authority);
 
-  // ① 项目级配置（坏配置 fail-closed）
+  // ①′ 受信策略 ref（契约一）：显式 --policy-ref 不可解析 = 用法错误 exit 2；
+  //    缺省不设 = 本地 advisory 用 working-tree（不自动取 ref）。
+  if (opts.policyRef !== null) {
+    try {
+      execFileSync('git', ['rev-parse', '--verify', '--quiet', `${opts.policyRef}^{commit}`], {
+        cwd: projectRoot,
+        stdio: ['ignore', 'pipe', 'pipe'],
+      });
+    } catch {
+      return emit(opts, { error: 'invalid-args', message: `--policy-ref ref not resolvable: ${opts.policyRef}` }, 2);
+    }
+  }
+
+  // ① 项目级配置（坏配置 fail-closed；policyRef 设置时读受信 ref 版本）
   let cfg;
   try {
-    cfg = loadProjectConfig(projectRoot);
+    cfg = loadProjectConfig(projectRoot, { policyRef: opts.policyRef });
   } catch (e) {
     return emit(opts, { error: e.code ?? 'invalid-config', message: e.message, authority }, 1);
   }
@@ -410,7 +417,7 @@ async function runProtocol(opts, projectRoot, changeDir, authority, cfg) {
   let disc;
   try {
     meta = parseChangeMetadata(changeDir);
-    disc = discoverCommand({ projectRoot, changeMetadata: meta.values });
+    disc = discoverCommand({ projectRoot, changeMetadata: meta.values, policyRef: opts.policyRef });
   } catch (e) {
     return emit(opts, { error: e.code ?? 'invalid-metadata', message: e.message, authority }, 1);
   }
@@ -438,7 +445,7 @@ async function runProtocol(opts, projectRoot, changeDir, authority, cfg) {
     }, 1);
   }
 
-  const policyVersion = computePolicyVersion(projectRoot, disc.source);
+  const policyVersion = disc.policyVersion ?? null;
   const fpArgs = { projectRoot, planningRoot: projectRoot, include: cfg.include ?? [] };
 
   // ⑥ 前指纹
@@ -545,6 +552,7 @@ async function runProtocol(opts, projectRoot, changeDir, authority, cfg) {
     inputKeyAfter: after.hash,
     authority,
     commandSource: disc.source,
+    policySource: disc.policySource,
     timestamp: new Date().toISOString(),
     timeoutMs: opts.timeoutMs,
     policyVersion,
