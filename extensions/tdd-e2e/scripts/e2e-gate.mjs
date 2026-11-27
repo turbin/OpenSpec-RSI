@@ -40,6 +40,7 @@ import {
   combineInputKey,
   computeContentHash,
   computePlanningHash,
+  copyLedgerSnapshot,
   createRunId,
   publishBundle,
   releaseRunLock,
@@ -586,11 +587,12 @@ async function runProtocol(opts, projectRoot, changeDir, authority, cfg) {
   if (error) out.error = error;
   if (missing) out.missing = missing;
 
-  // ⑩′ --finalize：bundle 内人读报告 → 原子发布 → 顶层 evidence.md 人读投影
+  // ⑩′ --finalize：台账快照（契约二）→ bundle 内人读报告 → 原子发布 → 顶层 evidence.md 人读投影
   if (opts.finalize) {
     const bundleAbs = path.join(changeDir, 'evidence', 'runs', runId);
     const projection = renderEvidenceProjection(record, { projectRoot, bundleAbs });
     try {
+      copyLedgerSnapshot(changeDir, stagingDir); // <changeDir>/tests/** → bundle tests/（台账快照）
       writeFileSync(path.join(stagingDir, 'evidence.md'), projection);
       publishBundle({ stagingDir, bundleDir: bundleAbs });
     } catch (e) {

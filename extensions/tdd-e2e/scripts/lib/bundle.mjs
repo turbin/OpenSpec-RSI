@@ -8,6 +8,7 @@
 import { createHash, randomBytes } from 'node:crypto';
 import {
   closeSync,
+  copyFileSync,
   cpSync,
   existsSync,
   lstatSync,
@@ -18,6 +19,7 @@ import {
   renameSync,
   rmSync,
   unlinkSync,
+  writeFileSync,
 } from 'node:fs';
 import path from 'node:path';
 import { normalizeEol } from './fingerprint.mjs';
@@ -26,6 +28,10 @@ import { normalizeEol } from './fingerprint.mjs';
 const RESULT_FILE = 'e2e-result.json';
 const REPORT_FILE = 'evidence.md';
 const LOCK_FILE = '.run-lock';
+
+/** 台账快照（契约二）：change tests/** 拷入 bundle 的 tests/ 子目录 + 可枚举清单（占位保 git 存续）。 */
+const LEDGER_SNAPSHOT_DIR = 'tests';
+const LEDGER_SNAPSHOT_MANIFEST = '.ledger-snapshot.json';
 
 function fail(code, message) {
   const err = new Error(message);
@@ -154,8 +160,55 @@ function manifestOk(record) {
 }
 
 /**
+ * 台账快照（契约二）：把 `<changeDir>/tests/**` 拷入 staging 的 `tests/` 子目录，
+ * 作为 run bundle 枚举的"台账快照"。快照清单（.ledger-snapshot.json）恒写入：
+ * 空快照时占位保目录在 git 提交/检出后存续，同时给出可枚举文件清单。
+ * symlink → fail-closed 抛错（与指纹口径一致）。
+ *
+ * @param {string} changeDir
+ * @param {string} stagingDir
+ * @returns {string[]} 快照内相对路径清单（码元序）
+ */
+export function copyLedgerSnapshot(changeDir, stagingDir) {
+  const src = path.join(changeDir, LEDGER_SNAPSHOT_DIR);
+  const dest = path.join(stagingDir, LEDGER_SNAPSHOT_DIR);
+  const files = [];
+  mkdirSync(dest, { recursive: true });
+
+  const walk = (dir, relBase) => {
+    let dirents;
+    try {
+      dirents = readdirSync(dir, { withFileTypes: true });
+    } catch {
+      return; // 无 tests/ → 空快照（清单占位）
+    }
+    for (const d of dirents) {
+      const rel = relBase ? `${relBase}/${d.name}` : d.name;
+      const abs = path.join(dir, d.name);
+      if (d.isSymbolicLink()) throw fail('staging-failed', `symlink-not-supported: ${rel}`);
+      if (d.isDirectory()) {
+        walk(abs, rel);
+      } else if (d.isFile()) {
+        const outAbs = path.join(dest, ...rel.split('/'));
+        mkdirSync(path.dirname(outAbs), { recursive: true });
+        copyFileSync(abs, outAbs);
+        files.push(rel);
+      }
+    }
+  };
+  walk(src, '');
+
+  files.sort();
+  writeFileSync(
+    path.join(dest, LEDGER_SNAPSHOT_MANIFEST),
+    `${JSON.stringify({ snapshotType: 'tdd-e2e-ledger-snapshot', version: 1, source: `${LEDGER_SNAPSHOT_DIR}/`, files }, null, 2)}\n`,
+  );
+  return files;
+}
+
+/**
  * bundle 复用校验（复用条件四要素）：
- * 完整（e2e-result.json + evidence.md 关键文件齐且记录可解析）
+ * 完整（e2e-result.json + evidence.md 关键文件齐且记录可解析，**且台账快照 tests/ 在场**）
  * ∧ 成功（exit 0）∧ 通过清单校验 ∧ 同组合键（记录 contentHash/policyVersion 重算 == 给定键；
  * contentHash 为完整内容段：指纹 ⊕ 规划面 specs/tests/.openspec.yaml）。
  * 红灯 / 损坏 / 键变 → reusable=false（不复用，新 run 或修复重建）。
@@ -173,6 +226,13 @@ export function verifyBundle(bundleDir, inputKeyHash) {
     return out; // 缺失或坏 JSON → 不完整
   }
   if (!existsSync(path.join(bundleDir, REPORT_FILE))) return out; // 关键文件不齐
+  let snapshot = false;
+  try {
+    snapshot = lstatSync(path.join(bundleDir, LEDGER_SNAPSHOT_DIR)).isDirectory();
+  } catch {
+    /* 台账快照缺失 → 不完整 */
+  }
+  if (!snapshot) return out; // 契约二：台账快照存在性入 complete 判定
   out.complete = true;
   out.success = record.exitCode === 0;
   out.manifestOk = manifestOk(record);

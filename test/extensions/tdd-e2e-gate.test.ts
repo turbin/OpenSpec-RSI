@@ -818,3 +818,49 @@ it('缺 --change 的 --finalize → usage 错误 exit 2', () => {
   expect(r.code).toBe(2);
   expect(JSON.parse(r.stdout).error).toBe('invalid-args');
 });
+
+// ---------- bundle 台账快照（契约二：finalize 发布时 <changeDir>/tests/** 拷入 run bundle） ----------
+
+it('finalize 发布的 bundle 内含台账快照：tests/** 逐字节拷入 + 可枚举清单', async () => {
+  const proj = makeProject({ config: { command: 'node -e "process.exit(0)"' } });
+  const changeDir = changeDirOf(proj);
+  fs.mkdirSync(path.join(changeDir, 'tests'), { recursive: true });
+  fs.writeFileSync(path.join(changeDir, 'tests', 'ledger.md'), '# ledger\n');
+  fs.mkdirSync(path.join(changeDir, 'tests', 'sub'), { recursive: true });
+  fs.writeFileSync(path.join(changeDir, 'tests', 'sub', 'more.md'), 'more\n');
+
+  const r1 = await runGate(['--change', 'c1', '--project', proj, '--finalize']);
+  expect(r1.code).toBe(0);
+  const j1 = JSON.parse(r1.stdout);
+  const bundle = bundleDirOf(proj, j1.runId);
+  expect(fs.readFileSync(path.join(bundle, 'tests', 'ledger.md'), 'utf8')).toBe('# ledger\n'); // 台账快照随行可审计
+  expect(fs.readFileSync(path.join(bundle, 'tests', 'sub', 'more.md'), 'utf8')).toBe('more\n');
+  const manifest = JSON.parse(fs.readFileSync(path.join(bundle, 'tests', '.ledger-snapshot.json'), 'utf8'));
+  expect(manifest.files).toEqual(['ledger.md', 'sub/more.md']); // 契约二：台账快照可枚举
+  expect(verifyBundle(bundle, j1.inputKeyHash).reusable).toBe(true); // 快照在 → complete
+});
+
+it('无 tests/ 的 change 同样落台账快照占位（空快照清单，complete 不因缺台账而塌）', async () => {
+  const proj = makeProject({ config: { command: 'node -e "process.exit(0)"' } });
+  const r1 = await runGate(['--change', 'c1', '--project', proj, '--finalize']);
+  expect(r1.code).toBe(0);
+  const j1 = JSON.parse(r1.stdout);
+  const bundle = bundleDirOf(proj, j1.runId);
+  const manifest = JSON.parse(fs.readFileSync(path.join(bundle, 'tests', '.ledger-snapshot.json'), 'utf8'));
+  expect(manifest.files).toEqual([]);
+  expect(verifyBundle(bundle, j1.inputKeyHash)).toEqual({
+    complete: true, success: true, manifestOk: true, reusable: true,
+  });
+});
+
+it('verifyBundle：complete 判定纳入台账快照存在性（缺 tests/ 快照 = 不完整不可复用）', async () => {
+  const proj = makeProject({ config: { command: 'node -e "process.exit(0)"' } });
+  const r1 = await runGate(['--change', 'c1', '--project', proj, '--finalize']);
+  expect(r1.code).toBe(0);
+  const j1 = JSON.parse(r1.stdout);
+  const bundle = bundleDirOf(proj, j1.runId);
+  fs.rmSync(path.join(bundle, 'tests'), { recursive: true, force: true }); // 摘除台账快照（手工构造残缺 bundle）
+  expect(verifyBundle(bundle, j1.inputKeyHash)).toEqual({
+    complete: false, success: false, manifestOk: false, reusable: false,
+  });
+});
